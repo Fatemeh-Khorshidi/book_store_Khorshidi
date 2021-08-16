@@ -13,6 +13,20 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from User.models import *
+
+
+# -------------------------------------
+import os
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Book_Store_DjangoPrj.settings")
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
+# -------------------------------------
+
+
+
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -37,6 +51,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #my app
+    'Books',
+    'Payment',
+    'User',
+
+
 ]
 
 MIDDLEWARE = [
@@ -70,6 +90,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Book_Store_DjangoPrj.wsgi.application'
 
+AUTH_USER_MODEL = 'User.Customer'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -128,7 +149,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'

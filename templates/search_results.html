@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="row">
+    <div class="col-12" style="direction: rtl;padding:100px">
+    {% if searched %}
+        <h2> نتایج جستجو شده برای {{ searched }}:</h2>
+        {% for result in results %}
+            {{ result }}
+        {% endfor %}
+    {% endif %}
+    </div>
+    </div>
+{% endblock content %}

@@ -396,7 +396,7 @@ body {
         box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
     }
 
-    .top_header {
+    .Top_header {
         --webkit-transition: -webkit-transform transform 0.4s cubic-bezier(0.4, 0, 1, 1);
         transition: transform 0.4s cubic-bezier(0.4, 0, 1, 1);
         position: fixed;
@@ -583,8 +583,10 @@ overflow: hidden; */
     }
 
     .swiper1 .swiper-slide {
+        background-size: contain;
+        background-repeat: no-repeat;
         background-position: center;
-        background-size: cover;
+        /*background-size: cover;*/
         width: 300px;
         height: 300px;
     }
@@ -753,4 +755,12 @@ overflow: hidden; */
     }
 
 
+
+.Top_nav{
+    max-width: 100%;
+    background-color:#F1F1F1;
+    max-height:50px;
+    margin: auto;
+    box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
+}
 

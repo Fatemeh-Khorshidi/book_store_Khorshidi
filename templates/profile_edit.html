@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link href="{% static 'css/cart_styles.css' %}" rel="stylesheet"/>
+
+{% endblock css %}
+{% block content %}
+<div>
+<form method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p  }}
+</form>
+</div>
+
+{% endblock content %}
