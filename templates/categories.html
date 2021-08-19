@@ -1,10 +1,32 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block css %}
-<link href="{% static 'css/cart_styles.css' %}" rel="stylesheet"/>
+<link href="{% static 'css/Book_details_styles.css' %}" rel="stylesheet"/>
 
 {% endblock css %}
 {% block content %}
 
 
+   <div class="container-fluid f-img4 " style="z-index: 1000;direction: rtl;padding:100px;">
+   <div class="card" style="margin-top: 10%; direction: rtl">
+                        <div class="row s-imgs" style="margin-left: -17px;margin-bottom: 3px;">
+                            <div class="" style="width:100%">
+                                {% for book in Cat_Book %}
+
+                                        <div class=" col-xs-2  col-6">
+
+                                            <picture>
+                                                <a href="{% url 'BookList' book.pk %}"><img
+                                                        srcset="{{ book.image.url }}" alt="کتب تاریخی"
+                                                        class="fatemeimg hvr-grow-shadow"></a>
+                                            </picture>
+
+                                        </div>
+
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                    </div>
+   </div>
 {% endblock content %}

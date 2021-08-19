@@ -1,3 +1,4 @@
+from django.contrib.auth.base_user import AbstractBaseUser
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -18,7 +19,7 @@ class BaseModel(models.Model):
     )
     # A timestamp representing when this object was created.
     created_time = models.DateTimeField(
-        verbose_name=_("Creation On"), auto_now_add=True
+        verbose_name="Creation On", auto_now_add=True
     )
     # A timestamp reprensenting when this object was last updated.
     updated_time = models.DateTimeField(
@@ -29,21 +30,18 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
 
-
 class CustomUser(AbstractUser):
     # is_staff =
     # is_superuser =
     age = models.PositiveIntegerField(null=True, blank=True)
-    first_name = models.CharField(max_length=40, blank=True, null=True)
-    last_name = models.CharField(max_length=20, blank=True, null=True)
+    # first_name = models.CharField(max_length=40, blank=True, null=True)
+    # last_name = models.CharField(max_length=20, blank=True, null=True)
     # username = models.CharField(max_length=80)
     # password = models.CharField(max_length=10)
-    address = models.ForeignKey('Address', on_delete=models.CASCADE)
     phone = models.CharField(max_length=24, blank=True, null=True)
-    email = models.EmailField()
-
-
-class CustomerProxy(CustomUser, BaseModel):
+    # email = models.EmailField()
+    address = models.ForeignKey('Address', on_delete=models.CASCADE, null=True)
+class CustomerProxy(CustomUser):
     """
     customer model:
     every users have to registers by this model fields
@@ -55,36 +53,9 @@ class CustomerProxy(CustomUser, BaseModel):
         verbose_name_plural = 'مشتری ها'
 
 
-# str نشون بدیم
-# class Customer(models.Model):
-#     """
-#     customer model:
-#     every users have to registers by this model fields
-#     """
-#
-#     # create at...
-#     created = models.DateTimeField(auto_now_add=True)
-#     # update at...
-#     updated = models.DateTimeField(auto_now=True)
-#
-#     class Meta:
-#         verbose_name = 'مشتری'
-#         verbose_name_plural = 'مشتری ها'
-#
-#     @property
-#     def full_name(self):
-#         return f'{self.first_name} {self.last_name}'
-#
-#     def status(self):
-#         # آیا مشتری لاگین است یا خیر
-#         pass
-#
-#     def __str__(self):
-#         return f'{self.full_name}'
 
-
-class AdminProxy(CustomUser, BaseModel):
-    name = models.CharField(max_length=40)
+class Adminuser(CustomUser):
+    # name = models.CharField(max_length=40)
 
     class Meta:
         proxy = True
@@ -92,12 +63,12 @@ class AdminProxy(CustomUser, BaseModel):
         # verbose_name_plural = 'کارمندان'
 
 
-class EmployeeProxy(CustomUser, BaseModel):
+class EmployeeProxy(CustomUser):
     """
     Employee model:
 
     """
-    name = models.CharField(max_length=40)
+    # name = models.CharField(max_length=40)
 
     class Meta:
         proxy = True

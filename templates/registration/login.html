@@ -1,9 +1,36 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <link href="{% static 'css/login_styles.css' %}" rel="stylesheet"/>
+<style>
+#refresh-rang{
+ display: none!important;
+}
+</style>
+{% endblock css %}
+
 {% block content %}
-    <h2>Log In</h2>
-    <form method="post">
+    <div class="container">
+		<div class="card" style="margin-top: 10%; direction: rtl">
+			<div class="container-fliud">
+    <form method="post" id="email" class="login">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Log In</button>
+        <button type="submit">ورود</button>
+
+        <div class="regist">
+            <span>ثبت نام نکردی؟</span>
+            <a href="{% url 'signup' %}" type="submit">ثبت نام</a>
+
+        </div>
     </form>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock content %}
+{% block js %}
+
+
+{% endblock js %}

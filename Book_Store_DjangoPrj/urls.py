@@ -16,12 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
-
+from django.template.context_processors import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf import settings
+from django.conf.urls.static import static
+from Book_Store_DjangoPrj import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('accounts.urls')),  # new
-    path('accounts/', include('django.contrib.auth.urls')),  # new
+
+    path('users/', include('django.contrib.auth.urls')),  # new
     # Books app urls
     path('', include('Books.urls')),
     # Users app urls
@@ -31,3 +35,10 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='base.html'),
     name='home'),
 ]
+
+# for see the static files in browser
+# for see the static files in browser
+urlpatterns += staticfiles_urlpatterns()
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

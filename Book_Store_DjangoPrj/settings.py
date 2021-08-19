@@ -13,16 +13,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-from User.models import *
-
-
-# -------------------------------------
-import os
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Book_Store_DjangoPrj.settings")
-from django.core.wsgi import get_wsgi_application
-application = get_wsgi_application()
-os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
-# -------------------------------------
 
 
 
@@ -55,6 +45,7 @@ INSTALLED_APPS = [
     'Books',
     'Payment',
     'User',
+
 
 
 ]
@@ -90,7 +81,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Book_Store_DjangoPrj.wsgi.application'
 
-AUTH_USER_MODEL = 'User.Customer'
+AUTH_USER_MODEL = 'User.CustomUser'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -98,7 +89,7 @@ AUTH_USER_MODEL = 'User.Customer'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Book_store',
+        'NAME': 'BookStore',
         'USER': 'postgres',
         'PASSWORD': '850258',
         'HOST': '127.0.0.1',
@@ -149,7 +140,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
-MEDIA_URL = '/media/'
+MEDIA_URL='media/'
+# MEDIA_ROOT= BASE_DIR / 'media'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type

@@ -1,9 +1,29 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <link href="{% static 'css/login_styles.css' %}" rel="stylesheet"/>
+<style>
+.login{
+    height: 375px!important;
+}
+</style>
+{% endblock css %}
+
 {% block content %}
-    <h2>Sign Up</h2>
-    <form method="post">
+    <form method="post" id="email" class="login" >
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Sign Up</button>
+        <button type="submit">ورود</button>
+        <div>
+            <span>ثبت نام کردی؟</span>
+            <a href="{% url 'login' %}" type="submit">ورود</a>
+
+        </div>
     </form>
+
+
 {% endblock content %}
+{% block js %}
+
+
+{% endblock js %}

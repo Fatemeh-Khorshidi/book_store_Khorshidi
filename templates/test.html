@@ -1,4 +1,115 @@
-{% for book in second_group %}
-{#<img src="{{ item.image.url }}" alt="">#}
- <img src="{{ book.image.url }}">
- {% endfor %}
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script>
+    <style>
+
+.main .container .glider-contain .glider .card-image {
+  margin-right: 0.5rem;
+  background: #ffffff;
+  border: none;
+  outline: none;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 2px;
+}
+.main .container .glider-contain .glider .card-image img {
+  display: block;
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.main .container .glider-contain .glider-prev,
+.main .container .glider-contain .glider-next {
+  font-size: 1.5rem;
+  background: #454545;
+  color: #ffffff;
+  margin-top: 1rem;
+  width: 3rem;
+  height: 3rem;
+  line-height: 3rem;
+  border-radius: 50%;
+}
+.main .container .glider-contain .glider-prev .fas,
+.main .container .glider-contain .glider-next .fas {
+  margin-left: 1rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .main .glider-contain .glider-prev,
+.main .glider-contain .glider-next {
+    display: none;
+  }
+}
+@media only screen and (min-width: 769px) {
+  .main .glider-contain .dots {
+    display: none;
+  }
+}
+
+    </style>
+
+</head>
+<body>
+<main class="main">
+  <div class="container">
+    <div class="glider-contain">
+      <div class="glider">
+        <div class="card-image">
+          <img src="https://source.unsplash.com/1280x720/?animal" alt="Slider Image">
+        </div>
+
+      </div>
+      <span role="button" aria-label="Previous" class="glider-prev"><i class="fas fa-chevron-left"></i></span>
+      <span role="button" aria-label="Next" class="glider-next"><i class="fas fa-chevron-right"></i></span>
+      <span role="tablist" class="dots"></span>
+    </div>
+  </div>
+</main>
+
+<!-- Item slider end-->
+
+
+<script>
+// Glider Configuration
+new Glider(document.querySelector(".glider"), {
+  slidesToShow: 1.5,
+  slidesToScroll: 1,
+  draggable: true,
+  dots: ".dots",
+  responsive: [
+    {
+      // If Screen Size More than 768px
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 1.5,
+        slidesToScroll: 1,
+        duration: 0.5,
+        arrows: {
+          prev: ".glider-prev",
+          next: ".glider-next"
+        }
+      }
+    },
+    {
+      // If Screen Size More than 1024px
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 2.5,
+        slidesToScroll: 1,
+        duration: 0.5,
+        arrows: {
+          prev: ".glider-prev",
+          next: ".glider-next"
+        }
+      }
+    }
+  ]
+});
+
+</script>
+</body>
+</html>

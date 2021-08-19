@@ -1,23 +1,25 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block css %}
+{#    <link rel="stylesheet" href="{% static 'css/slider_styles.css' %}">#}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script>
+
+{% endblock css %}
 {% block content %}
     <div class="krsone" style="background: #fafafa;">
         <div class="row" style="margin-top:2%">
             <div class="full column refresh-container">
                 <div class="row">
                     {#------------------------First slider of banners ----------------------------#}
-                    <div class="outer-div"   style="box-shadow: 10px 1px 10px -6px #00000070, -10px 1px 10px -6px #00000070">
+                    <div class="outer-div"
+                         style="box-shadow: 10px 1px 10px -6px #00000070, -10px 1px 10px -6px #00000070">
 
                         <div class="outer-div">
                             <div class="owl-carousel" style="width:100%;">
 
-                                {#                                <div class="item">#}
-                                {#                                    <a ng-href="" data-bannerplower="589574:1">#}
-                                {##}
-                                {#                                        <img src="{% static 'img/6375584093561314575.jpg' %}"#}
-                                {#                                             alt="" class="lazy img-responsive">#}
-                                {#                                    </a>#}
-                                {#                                </div>#}
+
                                 <div class="item">
                                     <a ng-href="" data-bannerplower="589574:1">
 
@@ -101,7 +103,8 @@
                         <div class="swiper-container swiper1" id="cowork">
                             <div class="swiper-wrapper">
 
-                                <div class="swiper-slide hovereffect" id="count0parent"  style="background-image:url({% static 'img/63755840889164696470.jpg' %})">
+                                <div class="swiper-slide hovereffect" id="count0parent"
+                                     style="background-image:url({% static 'img/63755840889164696470.jpg' %})">
                                     {#  -------------------------written hover effect is for this!!------------------------------  #}
                                     <div class="overlay">
                                         <h2>Hover effect 5</h2>
@@ -141,13 +144,15 @@
                                         </script>
                                     </div>
                                 </div>
-                                <div class="swiper-slide hovereffect" id="count1parent" style="background-image:url({% static 'img/63754017023714102010.jpg' %})">
+                                <div class="swiper-slide hovereffect" id="count1parent"
+                                     style="background-image:url({% static 'img/63754017023714102010.jpg' %})">
                                     <div class="overlay">
                                         <h2>Hover effect 5</h2>
                                         <p class="info backinfo">متن آزمایشی </p>
                                         <p class="info nbackinfo" style="display:none">مهلت پایان یافته</p>
                                     </div>
-                                    <div align="center" class="count1"  style="margin-bottom: 100px; width: 75%; margin-top:-60px;margin-left:12.5%">
+                                    <div align="center" class="count1"
+                                         style="margin-bottom: 100px; width: 75%; margin-top:-60px;margin-left:12.5%">
                                         <script>
                                             $(document).ready(function () {
                                                 royalCountdown1 = new RoyalCountdown(); 		//Add countdown as object
@@ -180,7 +185,8 @@
                                     </div>
                                 </div>
 
-                                <div class="swiper-slide hovereffect" id="count2parent" style="background-image:url({% static 'img/6375584093561314575.jpg' %})">
+                                <div class="swiper-slide hovereffect" id="count2parent"
+                                     style="background-image:url({% static 'img/6375584093561314575.jpg' %})">
                                     <div class="overlay">
                                         <h2>Hover effect 5</h2>
                                         <p class="info backinfo">متن آزمایشی </p>
@@ -309,118 +315,362 @@
 
                     </div>
 
-               <hr class="hr-text" data-content="رمان و داستان" style="margin-top:15px; ">
+                    <hr class="hr-text" data-content="رمان و داستان" style="margin-top:15px; ">
 
-                <div class="container-fluid f-img4 " style="z-index: 1000;">
-                    <div class="row s-imgs" style="margin-left: -17px;margin-bottom: 3px;">
-                        <div class="" style="width:100%">
-                            <div class="col-md-3 col-sm-3 col-xs-3  col-6">
-                                {% for book in second_group %}
-                                <picture>
-                                    <img srcset="{{ book.image.url }}" alt="کتب تاریخی"   class="fatemeimg hvr-grow-shadow">
-                                </picture>
+                    <div class="container-fluid f-img4 " style="z-index: 1000;">
+                        <div class="row s-imgs" style="margin-left: -17px;margin-bottom: 3px;">
+                            <div class="" style="width:100%">
+                                {% for book in third_group %}
+                                    {% if forloop.counter < 5 %}
+                                        <div class=" col-xs-3  col-6">
+
+                                            <picture>
+                                                {#                                 <img src=" {{ book.image.url }}" alt="">#}
+                                                <a href="{% url 'BookList' book.pk %}"><img
+                                                        srcset="{{ book.image.url }}" alt="کتب تاریخی"
+                                                        class="fatemeimg hvr-grow-shadow"></a>
+                                            </picture>
+
+                                        </div>
+                                    {% endif %}
                                 {% endfor %}
-                            </div>
                             </div>
 
                         </div>
                     </div>
-                </div>
-                    <script src="{% static 'js/swiper.min.js' %}"></script>
-                    <script src="{% static 'js/main.js' %}"></script>
 
-                    <!--start script slider-->
-                    <script>
-                        $(document).ready(function () {
+                    <div>
+                        <img srcset="{% static 'img/Loveyy.jpg' %}" alt="My default image"
+                             style="margin-top: 13px;box-shadow: 7px 0px 7px -5px #00000070, -7px 0px 7px -5px #00000070;">
 
-                            //Owl Home page banner
-                            var owl = $('.outer-div .owl-carousel').owlCarousel({
-                                items: 1,
-                                dots: true,
-                                loop: true,
-                                center: true,
-                                navigation: false,
-                                dotsContainer: "#topBannerDotts",
-                                autoplayHoverPause: true,
-                                autoplay: true,
-                                autoplayTimeout: 6000,
-                                responsiveClass: true,
-                                responsive: {
-                                    991: {
-                                        dots: true
-                                    }
-                                },
-                                startPosition: randomPosition()
+                    </div>
+                    <!---fatemehhhhh ghengesssssssssssssss-->
+                    <!--استایل های لایه ها با هم متفاوت است-->
+                    <div class="container-fluid f-img4 " style="overflow: hidden;">
+                        <div class="row fatemeh-imgs" style="margin-left:-17px;">
+                            <div class="" style="width:100%;">
+                                <div class="col-md-3 col-sm-3 col-xs-3  col-6  ">
+                                    {#                                    {% for book in second_group %}#}
+                                    <div class="hovereffect">
+                                        <a href="{% url 'BookList' third_group.1.pk %}"> <img
+                                                src="{{ third_group.1.image.url }}" alt="My default image"
+                                                class="">
+                                        </a>
+                                        <div class="overlay">
+                                            <p class="info"
+                                               style="background:url()"></p>
+                                        </div>
+                                    </div>
+                                    {#                                    {% endfor %}#}
+                                </div>
 
-                            });
-                            $('.owl-dot').click(function () {
-                                owl.trigger('to.owl.carousel', [$(this).index(), 300]);
-                            });
+                                <div class="col-md-3 col-sm-3 col-xs-3 col-6  twotilegroup  " style="padding:0px">
+                                    <div class="col-12 ">
+                                        <div class="hovereffect">
+                                            <a href="{% url 'BookList' third_group.2.pk %}"><img
+                                                    src="{{ third_group.2.image.url }}" alt="" class="">
+                                            </a>
+                                            <div class="overlay">
+                                                <p class="info" style="background:url();background-size: contain;
+                                        background-repeat: no-repeat;
+                                        background-position-x: center;"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+{#                                    <div class="col-12   twotilegroup">#}
+{#                                        <div class="hovereffect"><a href="{% url 'BookList' third_group.6.pk %}">#}
+{#                                            <img src="{{ third_group.6.image.url }}" alt="" class="">#}
+{#                                        </a>#}
+{#                                            <div class="overlay">#}
+{#                                                <p class="info" style="background:url();background-size: contain;#}
+{#                                    background-repeat: no-repeat;#}
+{#                                    background-position-x: center; "></p>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
 
-                            //Random index generator
+                                </div>
 
-                            function randomPosition() {
-                                var r_hb = $('#topBannerDotts h5').length;
-                                var randomize = null;
+                                <div class="col-md-3 col-sm-3 col-xs-3  col-6  twotilegroup2">
+                                    <div class="hovereffect"><a href="{% url 'BookList' third_group.4.pk %}">
+                                        <img src="{{ third_group.4.image.url }}" alt="My default image"
+                                             class=""></a>
+                                        <div class="overlay">
+                                            <p class="info"
+                                               style="background:url()"></p>
+                                        </div>
+                                    </div>
+                                </div>
 
-                                randomize = 1
+                                <div class="col-md-3 col-sm-3 col-xs-3 col-6  twotilegroup" style="padding:0px">
+                                    <div class="col-12 ">
+                                        <div class="hovereffect"><a href="{% url 'BookList' third_group.5.pk %}">
+                                            <img src="{{ third_group.5.image.url }}" alt="" class=""></a>
+                                            <div class="overlay">
+                                                <p class="info" style="background:url();background-size: contain;
+                                    background-repeat: no-repeat;
+                                    background-position-x: center; "></p>
+                                            </div>
+                                        </div>
+                                    </div>
+{#                                    <div class="col-12 twotilegroup2  twotilegroup ">#}
+{#                                        <div class="hovereffect"><a href="{% url 'BookList' third_group.0.pk %}">#}
+{#                                            <img src="{{ third_group.0.image.url }}" alt="" class=""></a>#}
+{#                                            <div class="overlay">#}
+{#                                                <p class="info" style="background:url();background-size: contain;#}
+{#                                    background-repeat: no-repeat;#}
+{#                                    background-position-x: center; "></p>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
 
-                                if (randomize != 0) {
-                                    return (Math.floor(Math.random() * r_hb));
-                                } else {
-                                    return 0;
-                                }
-                            }
-
-                            //Sort random function
-                            function random(owlSelector) {
-                                owlSelector.children().sort(function () {
-                                    return Math.round(Math.random()) - 0.5;
-                                }).each(function () {
-                                    $(this).appendTo(owlSelector);
-                                });
-                            }
-
-                            $("#store-entry").owlCarousel({
-                                navigation: true,
-                                pagination: false,
-                                items: 6,
-                                responsiveClass: true,
-                                responsive: {
-                                    0: {
-                                        items: 2,
-                                    },
-                                    600: {
-                                        items: 3,
-                                    },
-                                    767: {
-                                        items: 4,
-                                    },
-                                    979: {
-                                        items: 6,
-                                    }
-                                },
-
-                                navigationText: [
-                                    " ",
-                                    " "
-                                ],
-                                beforeInit: function (elem) {
-                                    random(elem);
-                                }
-                            });
-                        });
-                    </script>
-                    <!--end script slider-->
+                                </div>
 
 
-                    <!--start script category-->
+                            </div>
+                        </div>
+                    </div>
+                    <!--********************-->
 
+                    <div>
+                        <img srcset="{% static 'img/psycology.jpg' %}" alt="My default image"
+                             style="margin-top: 10px;box-shadow: 7px 0px 7px -5px #00000070, -7px 0px 7px -5px #00000070;">
+                    </div>
+
+                    <!---fatemehhhh chenges-->
+{#                    <div class="row fatemeh-imgs" style="margin-left:-17px;margin-top:-10px">#}
+{#                        <div class="" style="width:100%;">#}
+{#                            <div class="col-xs-8 col-12 twotilegroup" style="padding-left: 0p;padding-right: 0px;">#}
+{#                                <div class="col-12 hover-shine2">#}
+{#                                    <a href="{% url 'BookList' fifth_group.4.pk %}"><img#}
+{#                                            src="{{ fifth_group.4.image.url }}" alt="">#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                <div class=" col-5 twotilegroup2 hover-shine">#}
+{#                                    <img src="{{ fifth_group.2.image.url }}" alt="">#}
+{#                                </div>#}
+{##}
+{#                                <div class=" col-7 twotilegroup2 hover-shine"><a#}
+{#                                        href="{% url 'BookList' fifth_group.1.pk %}">#}
+{#                                    <img src="{{ fifth_group.1.image.url }}" alt=""></a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-xs-4 twotilegroup" style="padding-left:  0px;">#}
+{#                                <div class="col-12 hover-shine"><a href="{% url 'BookList' fifth_group.5.pk %}">#}
+{#                                    <img src="{{ fifth_group.5.image.url }}" alt=""></a>#}
+{#                                </div>#}
+{##}
+{#                                <div class="col-12 hover-shine"><a href="{% url 'BookList' fifth_group.3.pk %}">#}
+{#                                    <img src="{{ fifth_group.3.image.url }}" alt=""></a>#}
+{#                                </div>#}
+{#                                <div class="col-12 hover-shine"><a href="{% url 'BookList' fifth_group.7.pk %}">#}
+{#                                    <img src="{{ fifth_group.7.image.url }}" alt=""></a>#}
+{#                                </div>#}
+{#                            </div>#}
+{##}
+{#                        </div>#}
+                    <div class="row fatemeh-imgs" style="margin-left:-17px;margin-top:-10px">
+                        <div class="" style="width:100%;">
+                            <div class="col-xs-8 col-12 twotilegroup" style="padding-left: 0p;padding-right: 0px;">
+                                <div class="col-12 hover-shine2">
+                                   <img src="{% static 'img/image(2).png' %}" alt="">
+                                </div>
+                                <div class="row" style="padding: 2%">
+                                <div class=" col-5 twotilegroup2 hover-shine">
+                                    <img src="{% static 'img/the_suicide_shop_book.jpg' %}" alt="" style=" height: 231px;">
+                                </div>
+                                <div class=" col-7 twotilegroup2 hover-shine">
+                                    <img src="{% static 'img/Mans_Search_for_meaning_audiobook (2).jpg' %}" alt="">
+                                </div>
+                                    </div>
+                            </div>
+                            <div class="col-xs-4 twotilegroup" style="padding-left:  0px;">
+                                <div class="col-12 hover-shine">
+                                    <img src="{% static 'img/The_5_AM_Clubbook.jpg.jpg' %}" alt="">
+                                </div>
+
+                                <div class="col-12 hover-shine"><img src="{% static 'img/the-forty-rules-of-love.jpg' %}" alt="">
+                                </div>
+                                <div class="col-12 hover-shine"><img src="{% static 'img/the_girl_on_the_train_book.jpg' %}" alt="">
+                                </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <link rel="stylesheet" href="./content/begomercicont/css/begomerc-Numbers.css">
+
+                    <hr class="hr-text" data-content="در شهر شما بیشتر خریده اند" style="margin-top:15px; ">
+
+                    <div id="div1" style="width: 100%;position: relative;" class="arrowswiper2">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="glider-contain">
+                                <div class="glider">
+                                    {% for item in third_group %}
+                                        <div class="card-image">
+                                            <img src="{{ item.image.url }}" alt="Slider Image">
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                                <span role="button" aria-label="Previous" class="glider-prev"><i
+                                        class="fas fa-chevron-left"></i></span>
+                                <span role="button" aria-label="Next" class="glider-next"><i
+                                        class="fas fa-chevron-right"></i></span>
+                                <span role="tablist" class="dots"></span>
+                            </div>
+
+                        </div>
+                    </div>
 
 
                 </div>
 
             </div>
         </div>
+
+
+
     </div>
+
+    </div>
+    </div>
+    </div>
+ <script src="{% static 'js/swiper.min.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+
+        <!--start script slider-->
+        <script>
+            $(document).ready(function () {
+
+                //Owl Home page banner
+                var owl = $('.outer-div .owl-carousel').owlCarousel({
+                    items: 1,
+                    dots: true,
+                    loop: true,
+                    center: true,
+                    navigation: false,
+                    dotsContainer: "#topBannerDotts",
+                    autoplayHoverPause: true,
+                    autoplay: true,
+                    autoplayTimeout: 6000,
+                    responsiveClass: true,
+                    responsive: {
+                        991: {
+                            dots: true
+                        }
+                    },
+                    startPosition: randomPosition()
+
+                });
+                $('.owl-dot').click(function () {
+                    owl.trigger('to.owl.carousel', [$(this).index(), 300]);
+                });
+
+                //Random index generator
+
+                function randomPosition() {
+                    var r_hb = $('#topBannerDotts h5').length;
+                    var randomize = null;
+
+                    randomize = 1
+
+                    if (randomize != 0) {
+                        return (Math.floor(Math.random() * r_hb));
+                    } else {
+                        return 0;
+                    }
+                }
+
+                //Sort random function
+                function random(owlSelector) {
+                    owlSelector.children().sort(function () {
+                        return Math.round(Math.random()) - 0.5;
+                    }).each(function () {
+                        $(this).appendTo(owlSelector);
+                    });
+                }
+
+                $("#store-entry").owlCarousel({
+                    navigation: true,
+                    pagination: false,
+                    items: 6,
+                    responsiveClass: true,
+                    responsive: {
+                        0: {
+                            items: 2,
+                        },
+                        600: {
+                            items: 3,
+                        },
+                        767: {
+                            items: 4,
+                        },
+                        979: {
+                            items: 6,
+                        }
+                    },
+
+                    navigationText: [
+                        " ",
+                        " "
+                    ],
+                    beforeInit: function (elem) {
+                        random(elem);
+                    }
+                });
+            });
+        </script>
+        <!--end script slider-->
+        <!--start script slider-->
+        <script>
+
+
+            // Glider Configuration
+            new Glider(document.querySelector(".glider"), {
+                slidesToShow: 1.5,
+                slidesToScroll: 1,
+                draggable: true,
+                dots: ".dots",
+                responsive: [
+                    {
+                        // If Screen Size More than 768px
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1.5,
+                            slidesToScroll: 1,
+                            duration: 0.5,
+                            arrows: {
+                                prev: ".glider-prev",
+                                next: ".glider-next"
+                            }
+                        }
+                    },
+                    {
+                        // If Screen Size More than 1024px
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 4.5,
+                            slidesToScroll: 1,
+                            duration: 0.5,
+                            arrows: {
+                                prev: ".glider-prev",
+                                next: ".glider-next"
+                            }
+                        }
+                    }
+                ]
+            });
+        </script>
+        <!--end script slider-->
+
+        <!--start script category-->
+
+
 {% endblock content %}
+{% block js %}
+
+
+{% endblock js %}

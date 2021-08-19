@@ -9,17 +9,19 @@ from User.models import *
 
 # Create your models here.
 # فاکتور
-from Payment.managers import DiscountBaseManager
 
 
 class Invoice(models.Model):
     """
     invoice model
     """
+    CHOICE_FIELDS = [(0,'سفارش'),(1,'ثبت سفارش')]
     customer = models.ForeignKey('User.CustomUser', on_delete=models.DO_NOTHING, related_name='customer')
     invoice_date = models.DateTimeField()
     # billing_address = models.ForeignKey('User.Address', on_delete=models.CASCADE)
     total = models.BigIntegerField()
+    status = models.IntegerField(choices=CHOICE_FIELDS)
+    # code_sale = models.ForeignKey('Code_discount' , on_delete=models.DO_NOTHING, null=True, blank=True)
     # create at...
     # created = models.DateTimeField(auto_now_add=True, default=timezone.now)
     # update at...
@@ -51,27 +53,8 @@ class InvoiceLine(models.Model):
         verbose_name_plural = ''
 
 
-# مدل تخفیف
-class Discount(models.Model):
-    """
-    discount model:
-    we have 3 type of discount in this project
-    """
-    name = models.CharField(max_length=100)
-    code = models.CharField(max_length=30,blank=True, null=False,)
-    is_active = models.BooleanField(default=True)
-    valid_from = models.DateTimeField(default=datetime.now)
-    valid_until = models.DateTimeField(blank=True, null=True)
 
-    num_uses = models.IntegerField(('Number of times already used'), default=0)
 
-    objects = DiscountBaseManager()
-
-    def __unicode__(self):
-        return self.get_name()
-
-    def get_name(self):
-        return self.name
 
 
 # مدل سبد خرید
