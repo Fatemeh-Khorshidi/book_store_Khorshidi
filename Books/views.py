@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 from django.views.generic import ListView, DetailView
 
 import Books
 from Books.models import Book, Category
+from Cart.forms import CartAddBookForm
 
 
 class HomeListView(ListView):
@@ -68,12 +69,25 @@ def search_results(request):
         return render(request, 'search_results.html', {})
 
 
+# def BookDetaiView(request):
+#     """
+#     Display details of each books; include title, author, image category and price.
+#     """
+#     book = get_object_or_404(Book, id=id, pk=id, available=True )
+#     cart_book_form = CartAddBookForm()
+#     model = Book
+#     template_name = 'Book_info.html'
+#     return render(request,'Book_info.html', {'book':book,
+#                                'cart_book_form':cart_book_form})
+#
 class BookDetaiView(DetailView):
     """
     Display details of each books; include title, author, image category and price.
     """
+    cart_book_form = CartAddBookForm()
     model = Book
     template_name = 'Book_info.html'
+
 
 
 class CategoryListView(ListView):

@@ -24,14 +24,19 @@ from Book_Store_DjangoPrj import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    path('users/', include('django.contrib.auth.urls')),  # new
+    # new
+    path('users/', include('django.contrib.auth.urls')),
     # Books app urls
     path('', include('Books.urls')),
     # Users app urls
     path('users/', include('User.urls')),
+    # Order pages
+    path('orders/', include('Order.urls')),
+    # Cart pages
+    path('cart/', include('Cart.urls')),
     # Payment app urls
     # path('payments/', include('Payment.urls')),
+    #
     path('', TemplateView.as_view(template_name='base.html'),
     name='home'),
 ]

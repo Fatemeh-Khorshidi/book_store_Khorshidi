@@ -136,28 +136,7 @@ $('document').ready(function(){
     for (var i=0 ; i<8 ; i++){
         debugger;
         swiper2.appendSlide(`
-		<div class="swiper-slide" style="background-image:url(./content/begomercicont/img/Hair_Cosmetic.jpg)">
-		<div class="jadid">
-		  <span>جدید
-			<span>
-		</div>
-		<div class="dec">
-		  <span class="title">محصول شماره یک</span>
-		  <span class="desc">
-			<div class="row" style="margin-top:-10px;">
-			  <div class="col-xs-9">
-				<del>19,000,000</del>
-				<span class="price">20,000,000
-				  <span style="margin-right: -58px;">
-					<i style="font-size:xx-small;float:left; margin-right:5px;">تومان</i>
-			  </div>
-			  <div class="col-xs-3">
-			  <a class="cart"></a>
-			  </div>
-			</div>
-			</span>
-		</div>
-		</div>`);
+		`);
     }
     }
 	app2();
@@ -191,28 +170,7 @@ $('document').ready(function(){
     function app3(){
     for (var i=0 ; i<8 ; i++){
 		swiper3.appendSlide(`
-		<div class="swiper-slide" style="background-image:url(./content/begomercicont/img/Hair_Cosmetic.jpg)">
-		<div class="jadid">
-		  <span>جدید
-			<span>
-		</div>
-		<div class="dec">
-		  <span class="title">محصول شماره یک</span>
-		  <span class="desc">
-			<div class="row" style="margin-top:-10px;">
-			  <div class="col-xs-9">
-				<del>19,000,000</del>
-				<span class="price">20,000,000
-				  <span style="margin-right: -58px;">
-					<i style="font-size:xx-small;float:left; margin-right:5px;">تومان</i>
-			  </div>
-			  <div class="col-xs-3">
-			  <a class="cart"></a>
-			  </div>
-			</div>
-			</span>
-		</div>
-		</div>`);
+		`);
     }
     }
 	app3();
@@ -248,28 +206,7 @@ $('document').ready(function(){
     for (var i=0 ; i<8 ; i++){
         debugger;
         swiper4.appendSlide(`
-		<div class="swiper-slide" style="background-image:url(./content/begomercicont/img/Hair_Cosmetic.jpg)">
-		<div class="jadid">
-		  <span>جدید
-			<span>
-		</div>
-		<div class="dec">
-		  <span class="title">محصول شماره یک</span>
-		  <span class="desc">
-			<div class="row" style="margin-top:-10px;">
-			  <div class="col-xs-9">
-				<del>19,000,000</del>
-				<span class="price">20,000,000
-				  <span style="margin-right: -58px;">
-					<i style="font-size:xx-small;float:left; margin-right:5px;">تومان</i>
-			  </div>
-			  <div class="col-xs-3">
-			  <a class="cart"></a>
-			  </div>
-			</div>
-			</span>
-		</div>
-		</div>`);
+		`);
     }
     }
 	app4();

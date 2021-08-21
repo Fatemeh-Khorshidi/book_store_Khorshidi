@@ -36,8 +36,12 @@
                         <h4 class="price"> قیمت: <span>{{ object.price }}</span> تومان </h4>
 
 						<div class="action">
-							<button class="add-to-cart btn btn-default" type="button">خرید</button>
-							<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+                            <form action="{% url "cart_add" book.id %}" method="post">
+							{{ cart_book_form }}
+                                {% csrf_token %}
+                                <button class="add-to-cart btn btn-default" type="button">خرید</button>
+{#							<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>#}
+                                </form>
 						</div>
 					</div>
 				</div>

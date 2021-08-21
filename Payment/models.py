@@ -1,16 +1,15 @@
 from datetime import datetime
+from decimal import Decimal
 from time import timezone
 
 from django.db import models
-
+from Discount.models import Code_discount
 import User
 from Books.models import *
 from User.models import *
 
 # Create your models here.
 # فاکتور
-
-
 class Invoice(models.Model):
     """
     invoice model
@@ -21,7 +20,7 @@ class Invoice(models.Model):
     # billing_address = models.ForeignKey('User.Address', on_delete=models.CASCADE)
     total = models.BigIntegerField()
     status = models.IntegerField(choices=CHOICE_FIELDS)
-    # code_sale = models.ForeignKey('Code_discount' , on_delete=models.DO_NOTHING, null=True, blank=True)
+    code_sale = models.ForeignKey('Discount.Code_discount' , on_delete=models.DO_NOTHING, null=True, blank=True, related_name='code_sale')
     # create at...
     # created = models.DateTimeField(auto_now_add=True, default=timezone.now)
     # update at...
@@ -38,6 +37,9 @@ class Invoice(models.Model):
         # else:
         #     state = 'ثبت'
 
+    # def get_total_cost(self):
+    #     total_cost =  sum(item.get_cost() for item in self.items.all())
+    #     return total_cost - total_cost * (self.discount/Decimal('100'))
 
 class InvoiceLine(models.Model):
     """

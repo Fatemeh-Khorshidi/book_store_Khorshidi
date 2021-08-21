@@ -1,0 +1,19 @@
+{% block content %}
+<h1>checkout</h1>
+    <div class="order-info">
+    <h3>سفارش شما</h3>
+    <ul>
+        {% for item in cart %}
+            <li>{{ item.quantity }} * {{ item.book.name }}<span>{{ item.total_price }}</span></li>
+
+        {% endfor %}
+    </ul>
+    <p>Total: {{ cart.get_total_price }}</p>
+    </div>
+    <form action="" method="" class="order-form">
+    {{ form.as_p }}
+    <p><input type="submit" value="Place order"></p>
+    {% csrf_token %}
+    </form>
+
+{% endblock %}
