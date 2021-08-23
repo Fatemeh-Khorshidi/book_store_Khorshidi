@@ -44,33 +44,48 @@
     {% block css %}
     {% endblock css %}
 </head>
-{% if user.is_authenticated %}
-    Hi {{ user.username }}
-    <p><a href="{% url 'logout' %}">Log Out</a></p>
-{% else %}
-    <p>You are not logged in</p>
-    <a href="{% url 'login' %}">Log In</a> |
-    <a href="{% url 'signup' %}">Sign Up</a>
-{% endif %}
 
 <body style="font-family:yekan;">
 
 
 <div class="header Top_header" id="Top_header">
     {#------------------------Top icons, logo and search bar----------------------------#}
-    <div class="header-top refresh-container">
+     <div class="header-top refresh-container">
         <!-- /.awemenu -->
+    <div>
+        {% if user.is_authenticated %}
+            عزیز {{ user.username }}سلام
+        {% else %}
+
+            {#            <a href="{% url 'login' %}">ورود</a> |#}
+            {#            <a href="{% url 'signup' %}">ثبت نام</a>#}
+
+        {% endif %}
+    </div>
         <div class="icons">
             <div class="icon-dropdown" style="top: -2px;  width: inherit;">
                 <a href="#" title="Account" class="icon-accounts"><img src="{% static 'img/user.png' %}"></a>
                 <ul id="">
-                    <li id="loginLinks-6pmrefresh" class="name">
-                        <a href="{% url 'login' %}" id="new-login-btn" class="login-click">ورود/ثبت
-                            نام</a>
-                    </li>
+                    {% if user.is_authenticated %}
+                        <li id="loginLinks-6pmrefresh" class="name">
+                            <a href="{% url 'logout' %}" id="new-login-btn" class="login-click">خروج</a>
 
+                        </li>
+                    {% else %}
+                        <li id="loginLinks-6pmrefresh" class="name">
+
+                            <a href="{% url 'login' %}" id="new-login-btn" class="login-click">ورود/ثبت
+                                نام</a>
+                        </li>
+{#                        <li id="loginLinks-6pmrefresh" class="name">#}
+{##}
+{#                            <a href="{% url 'logout' %}" id="new-login-btn" class="login-click">خروج#}
+{#                                </a>#}
+{#                        </li>#}
+                    {% endif %}
                 </ul>
             </div>
+
             <div class="hide-mobile">
                 <a href="#" class="icon-help " title="راهنما"><img src="{% static 'img/question.png' %}"></a>
             </div>
@@ -82,7 +97,9 @@
                 </a>
             </div>
             <div class="mobile-nav-toggle " data-nav-toggle></div>
+
         </div>
+
         <div class="phone-callout" style="width:100%;">
             <div>
                 <div class="search-container">
@@ -111,7 +128,6 @@
         </div>
 
     </div>
-
 
     {#------------------------Top menu bar for display categories ----------------------------#}
     <nav class="Top_nav" data-sub-nav="">
@@ -164,7 +180,6 @@
     {% endblock content %}
 </main>
  <script>
-
 
                         var didScroll;
                         var lastScrollTop = 0;

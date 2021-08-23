@@ -93,12 +93,6 @@ class BookDetaiView(DetailView):
         return context
 
 
-# def Book_detail(request, id):
-#     book = get_object_or_404(Book, id=id)
-#     cart_book_form = CartAddBookForm()
-#     return render(request, 'Book_info.html', {'book': book,
-#                                                 'cart_book_form': cart_book_form})
-
 class CategoryListView(ListView):
     """
     Display every books from each categories in separate html pages
