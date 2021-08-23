@@ -7,7 +7,18 @@
     border-radius: 1rem;
     border: transparent
 }
-
+.add-to-cart {
+  background: #ff9f1a;
+  padding: 1.2em 1.5em;
+  border: none;
+  text-transform: UPPERCASE;
+  font-weight: bold;
+  color: #fff;
+  -webkit-transition: background .3s ease;
+          transition: background .3s ease; }
+  .add-to-cart:hover, .like:hover {
+    background: #b36800;
+    color: #fff; }
 @media(max-width:767px) {
     .card {
         margin: 3vh auto

@@ -13,7 +13,5 @@ urlpatterns = [
     # Category's pages
     path('Category/<int:pk>/', CategoryListView.as_view(), name='CategoryList'),
     # User cart
-    path('parches/', parches, name='parches'),
-    # path('test/', any_view, name='test'),
 
 ]

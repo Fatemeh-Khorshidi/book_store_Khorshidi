@@ -4,9 +4,11 @@
 {% block content %}
     <div class="row">
     <div class="col-12" style="direction: rtl;padding:100px">
+
     {% if searched %}
         <h2> نتایج جستجو شده برای {{ searched }}:</h2>
         {% for result in results %}
+{#            <a href="{% url '' %}"></a>#}
             {{ result }}
         {% endfor %}
     {% endif %}

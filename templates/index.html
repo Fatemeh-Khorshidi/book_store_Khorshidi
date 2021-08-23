@@ -320,7 +320,7 @@
                     <div class="container-fluid f-img4 " style="z-index: 1000;">
                         <div class="row s-imgs" style="margin-left: -17px;margin-bottom: 3px;">
                             <div class="" style="width:100%">
-                                {% for book in third_group %}
+                                {% for book in seventh_group %}
                                     {% if forloop.counter < 5 %}
                                         <div class=" col-xs-3  col-6">
 
@@ -347,13 +347,13 @@
                     <!---fatemehhhhh ghengesssssssssssssss-->
                     <!--استایل های لایه ها با هم متفاوت است-->
                     <div class="container-fluid f-img4 " style="overflow: hidden;">
-                        <div class="row fatemeh-imgs" style="margin-left:-17px;">
+                        <div class="row s-imgs" style="margin-left:-17px;">
                             <div class="" style="width:100%;">
-                                <div class="col-md-3 col-sm-3 col-xs-3  col-6  ">
-                                    {#                                    {% for book in second_group %}#}
+                                <div class="col-xs-3  col-6  ">
+                                    {#  {% for book in second_group %}#}
                                     <div class="hovereffect">
-                                        <a href="{% url 'BookList' third_group.1.pk %}"> <img
-                                                src="{{ third_group.1.image.url }}" alt="My default image"
+                                        <a href="{% url 'BookList' second_group.1.pk %}"> <img
+                                                src="{{ second_group.1.image.url }}" alt="My default image"
                                                 class="">
                                         </a>
                                         <div class="overlay">
@@ -364,11 +364,11 @@
                                     {#                                    {% endfor %}#}
                                 </div>
 
-                                <div class="col-md-3 col-sm-3 col-xs-3 col-6  twotilegroup  " style="padding:0px">
+                                <div class="col-xs-3 col-6  twotilegroup  " style="padding:0px">
                                     <div class="col-12 ">
                                         <div class="hovereffect">
-                                            <a href="{% url 'BookList' third_group.2.pk %}"><img
-                                                    src="{{ third_group.2.image.url }}" alt="" class="">
+                                            <a href="{% url 'BookList' second_group.5.pk %}"><img
+                                                    src="{{ second_group.2.image.url }}" alt="" class="">
                                             </a>
                                             <div class="overlay">
                                                 <p class="info" style="background:url();background-size: contain;
@@ -377,23 +377,23 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {#                                    <div class="col-12   twotilegroup">#}
-                                    {#                                        <div class="hovereffect"><a href="{% url 'BookList' third_group.6.pk %}">#}
-                                    {#                                            <img src="{{ third_group.6.image.url }}" alt="" class="">#}
-                                    {#                                        </a>#}
-                                    {#                                            <div class="overlay">#}
-                                    {#                                                <p class="info" style="background:url();background-size: contain;#}
-                                    {#                                    background-repeat: no-repeat;#}
-                                    {#                                    background-position-x: center; "></p>#}
-                                    {#                                            </div>#}
-                                    {#                                        </div>#}
-                                    {#                                    </div>#}
+{#                                        <div class="col-12   twotilegroup">#}
+{#                                            <div class="hovereffect"><a href="{% url 'BookList' third_group.6.pk %}">#}
+{#                                                <img src="{{ third_group.6.image.url }}" alt="" class="">#}
+{#                                            </a>#}
+{#                                                <div class="overlay">#}
+{#                                                    <p class="info" style="background:url();background-size: contain;#}
+{#                                        background-repeat: no-repeat;#}
+{#                                        background-position-x: center; "></p>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </div>#}
 
                                 </div>
 
-                                <div class="col-md-3 col-sm-3 col-xs-3  col-6  twotilegroup2">
-                                    <div class="hovereffect"><a href="{% url 'BookList' third_group.4.pk %}">
-                                        <img src="{{ third_group.4.image.url }}" alt="My default image"
+                                <div class=" col-xs-3  col-6  twotilegroup2">
+                                    <div class="hovereffect"><a href="{% url 'BookList' second_group.4.pk %}">
+                                        <img src="{{ second_group.4.image.url }}" alt="My default image"
                                              class=""></a>
                                         <div class="overlay">
                                             <p class="info"
@@ -402,10 +402,10 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-3 col-sm-3 col-xs-3 col-6  twotilegroup" style="padding:0px">
+                                <div class=" col-xs-3 col-6  twotilegroup" style="padding:0px">
                                     <div class="col-12 ">
-                                        <div class="hovereffect"><a href="{% url 'BookList' third_group.5.pk %}">
-                                            <img src="{{ third_group.5.image.url }}" alt="" class=""></a>
+                                        <div class="hovereffect"><a href="{% url 'BookList' second_group.5.pk %}">
+                                            <img src="{{ second_group.5.image.url }}" alt="" class=""></a>
                                             <div class="overlay">
                                                 <p class="info" style="background:url();background-size: contain;
                                     background-repeat: no-repeat;
@@ -512,7 +512,7 @@
                             <div class="glider-contain">
 
                                 <div class="glider">
-                                {% for item in third_group %}
+                                {% for item in forth_group %}
                                         <div class="card-image">
                                             <img src="{{ item.image.url }}" alt="Slider Image">
                                         </div>

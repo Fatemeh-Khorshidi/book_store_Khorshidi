@@ -1,19 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <link href="{% static 'css/cart_styles.css' %}" rel="stylesheet"/>
+
+{% endblock css %}
 {% block content %}
-<h1>checkout</h1>
-    <div class="order-info">
-    <h3>سفارش شما</h3>
-    <ul>
-        {% for item in cart %}
-            <li>{{ item.quantity }} * {{ item.book.name }}<span>{{ item.total_price }}</span></li>
+    <div class="card" style="margin-top: 10%; direction: rtl">
+        <div class="row">
+            <div class="col-sm-4 offset-2">
+                <div class="card bg-light mb-3" style="max-width: 18rem;">
+                    <div class="card-header">فاکتور نهایی</div>
+                    <div class="card-body">
+                        <h5 class="card-title">سفارش شما</h5>
+                        {% for item in cart %}
+                                <li>{{ item.quantity }} * {{ item.book.name }}<span>{{ item.total_price }}</span></li>
 
-        {% endfor %}
-    </ul>
-    <p>Total: {{ cart.get_total_price }}</p>
-    </div>
-    <form action="" method="" class="order-form">
-    {{ form.as_p }}
-    <p><input type="submit" value="Place order"></p>
-    {% csrf_token %}
-    </form>
+                            {% endfor %}
+                        <p class="card-text">مجموع کل: {{ cart.get_total_price }} </p>
+                    </div>
+                </div>
 
+            </div>
+            <div class="col-sm-4">
+                <form action="{% url 'final_step' %}" method="" class="order-form">
+                    {{ form.as_p }}
+                    <p><input class="add-to-cart btn-default" type="submit" value="ثبت"></p>
+                    {% csrf_token %}
+                </form>
+            </div>
+        </div>
 {% endblock %}

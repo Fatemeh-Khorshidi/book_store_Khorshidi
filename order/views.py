@@ -25,7 +25,20 @@ def order_create(request):
                 cart.clear()
                 # launch asynchronous task
                 # order_created.delay(order.id)
+
                 return render(request, 'create.html', {'order':order})
     else:
         form = OrderCreationForm()
         return render(request, 'create.html', {'form': form})
+
+
+def final_step(request) :
+    if request.method=='POST':
+        form = OrderCreationForm(request.POST)
+        if form.is_valid():
+            order = form.save(commit=False)
+            return render(request, 'created.html', {'order':order,'form':form})
+
+    else:
+        form = OrderCreationForm()
+        return render(request, 'created.html', {'form':form})

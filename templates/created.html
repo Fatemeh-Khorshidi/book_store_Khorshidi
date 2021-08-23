@@ -1,6 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <link href="{% static 'css/cart_styles.css' %}" rel="stylesheet"/>
+
+{% endblock css %}
 {% block content %}
-<h2>با تشکر از خرید شما</h2>
-    <p>
-    سفارش شما با موفقیت به اتمام رسید. منتطر دریافت بسته خود باشید :)
-    </p>
+    <div class="card" style="margin-top: 10%;padding: 10%; direction: rtl">
+        <h2>با تشکر از خرید شما</h2>
+        <p>
+            سفارش شما با موفقیت به اتمام رسید. منتطر دریافت بسته خود باشید :)
+        </p>
+    </div>
 {% endblock content %}
