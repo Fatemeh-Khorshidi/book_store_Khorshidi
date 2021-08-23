@@ -5,14 +5,14 @@ from django.views.generic import ListView, DetailView
 
 import Books
 from Books.models import Book, Category
-from Cart.forms import CartAddBookForm
+# from Cart.forms import CartAddBookForm
+from cart.forms import CartAddBookForm
 
 
 class HomeListView(ListView):
     """
     show books of different categories in sliders of home page
     context['categories']=   top menu shows all book categories with this class view
-
     """
     model = Category
     context_object_name = 'books_list'
@@ -39,7 +39,6 @@ class MenuView(ListView):
     """
     show books of different categories in sliders of home page
     context['categories']=   top menu shows all book categories with this class view
-
     """
     model = Category
     context_object_name = 'books_list'
@@ -56,7 +55,6 @@ class MenuView(ListView):
 
 def search_results(request):
     """
-
     :param request:
     :return: books that contain the user searched items
     """
@@ -67,6 +65,7 @@ def search_results(request):
 
     else:
         return render(request, 'search_results.html', {})
+
 
 
 # def BookDetaiView(request):
@@ -84,11 +83,21 @@ class BookDetaiView(DetailView):
     """
     Display details of each books; include title, author, image category and price.
     """
-    cart_book_form = CartAddBookForm()
+    # cart_book_form = CartAddBookForm()
     model = Book
     template_name = 'Book_info.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(BookDetaiView, self).get_context_data(**kwargs)
+        context['cart_book_form'] = CartAddBookForm
+        return context
 
+
+# def Book_detail(request, id):
+#     book = get_object_or_404(Book, id=id)
+#     cart_book_form = CartAddBookForm()
+#     return render(request, 'Book_info.html', {'book': book,
+#                                                 'cart_book_form': cart_book_form})
 
 class CategoryListView(ListView):
     """
@@ -110,6 +119,3 @@ class CategoryListView(ListView):
 
 def parches(reguest):
     return render(reguest, 'Cart.html', {})
-
-
-

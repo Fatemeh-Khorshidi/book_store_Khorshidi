@@ -1,5 +1,5 @@
 from django.db import models
-from Discount.models import Percentage_discount
+# from Coupons.models import Coupon,Cash_discount
 
 # Create your models here.
 from User.models import BaseModel
@@ -18,8 +18,8 @@ class Book(BaseModel):
     image = models.ImageField(upload_to="media/")
     book_info = models.TextField(null=True, blank=True)
     inventory = models.IntegerField(default=0)
-    percentage_sale = models.ForeignKey('Discount.Percentage_discount', on_delete=models.DO_NOTHING, null=True, blank=True , related_name='percentage_sale')
-    cash_sale = models.ForeignKey('Discount.Percentage_discount', on_delete=models.DO_NOTHING, null=True, blank=True, related_name='cash_sale')
+    # percentage_sale = models.ForeignKey('Coupons.Coupon', on_delete=models.DO_NOTHING, null=True, blank=True , related_name='percentage_sale')
+    # cash_discount = models.ForeignKey('Coupons.Cash_discount', on_delete=models.DO_NOTHING, null=True, blank=True, related_name='cash_discount')
     # create at...
     # created = models.DateTimeField(auto_now_add=True)
     # update at...
@@ -33,7 +33,7 @@ class Book(BaseModel):
         """
         Calculate cost with the percentage discount
         """
-        price = int(self.price * (100 - self.sale) / 100)
+        price = int(self.price * (100 - self.percentage_sale) / 100)
         return price
 
 

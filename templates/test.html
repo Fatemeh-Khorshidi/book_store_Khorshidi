@@ -1,115 +1,91 @@
-<html>
-<head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script>
-    <style>
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <link href="{% static 'css/cart_styles.css' %}" rel="stylesheet"/>
 
-.main .container .glider-contain .glider .card-image {
-  margin-right: 0.5rem;
-  background: #ffffff;
-  border: none;
-  outline: none;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  border-radius: 2px;
-}
-.main .container .glider-contain .glider .card-image img {
-  display: block;
-  position: relative;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: auto;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.main .container .glider-contain .glider-prev,
-.main .container .glider-contain .glider-next {
-  font-size: 1.5rem;
-  background: #454545;
-  color: #ffffff;
-  margin-top: 1rem;
-  width: 3rem;
-  height: 3rem;
-  line-height: 3rem;
-  border-radius: 50%;
-}
-.main .container .glider-contain .glider-prev .fas,
-.main .container .glider-contain .glider-next .fas {
-  margin-left: 1rem;
-}
+{% endblock css %}
+{% block content %}
+    <div class="card" style="margin-top: 10%; direction: rtl">
+        {% for item in cart %}
+            {% with book=item.book %}
+                <div class="row">
+                    <div class="col-md-8 cart">
+                        <div class="title">
+                            <div class="row">
+                                <div class="col">سبد خرید</b></h4>
+                                </div>
+                                <div class="col align-self-center text-right text-muted">{{ item.quantity }}<span
+                                        style="direction: rtl">  :تعداد کتاب های خریداری شده</span></div>
+                            </div>
+                        </div>
+                        <div class="row border-top border-bottom">
+                            <div class="row main align-items-center">
+                                <div class="col-2"><img class="img-fluid" src="
 
-@media only screen and (max-width: 768px) {
-  .main .glider-contain .glider-prev,
-.main .glider-contain .glider-next {
-    display: none;
-  }
-}
-@media only screen and (min-width: 769px) {
-  .main .glider-contain .dots {
-    display: none;
-  }
-}
+                                        {% if book.image %}{{ book.image.url }}{% else %}{% static 'img/the-forty-rules-of-love.jpg' %}{% endif %}">
+                                </div>
+                                <div class="col">
+                                    <div class="row text-muted">{{ book.title }}</div>
 
-    </style>
+                                </div>
+                                <div class="col">
+                                    <form action="{% url "cart_add" book.id %}" method="post">
+                                        {{ item.update_quantity_form.quantity }}
+                                        {{ item.update_quantity_form.update }}
+                                        <input type="submit" value="update">
+                                        {% csrf_token %}
+                                    </form>
+                                </div>
+                                <div class="col">تومان {{ book.price }}</div>
+                                <div class="col"><a href="{% url 'cart_remove' book.id %}"><span
+                                        class="close">&#10005;</span></a></div>
+                            </div>
+                        </div>
+                    </div>
 
-</head>
-<body>
-<main class="main">
-  <div class="container">
-    <div class="glider-contain">
-      <div class="glider">
-        <div class="card-image">
-          <img src="https://source.unsplash.com/1280x720/?animal" alt="Slider Image">
-        </div>
+                    <div class="col">تومان {{ book.total_price }}  </div>
+                
+                <div class="col-md-4 summary">
+                    <div>
+                        <h5><b>فاکتور خرید</b></h5>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col" style="padding-left:0;"></div>
+                        <div class="col text-right">&euro; 132.00</div>
+                    </div>
+                    <form action="{% url "apply" %}" method="post">
+                        {{ discount_apply_form }}
+                        <input type="submit">
+                        {% csrf_token %}
+                    </form>
+                    <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                        <div class="col">TOTAL PRICE</div>
+                        <div class="col text-right">&euro; 137.00</div>
+                    </div>
+                    <button class="btn">CHECKOUT</button>
 
-      </div>
-      <span role="button" aria-label="Previous" class="glider-prev"><i class="fas fa-chevron-left"></i></span>
-      <span role="button" aria-label="Next" class="glider-next"><i class="fas fa-chevron-right"></i></span>
-      <span role="tablist" class="dots"></span>
+
+
+                    {% if cart.coupon %}
+                        {{ cart.get_total_price }}
+                        <div>
+                            {% with code=cart.coupon.code discount=cart.coupon.discount %}
+                                <spas>{{ code }} تخفیف</spas><span>{{ discount }} off</span>
+                            {% endwith %}
+                        </div>
+                        <div>{{ cart.get_discount }}</div>
+                        <div class="total-rating">
+                            <span class="num">{{ cart.get_total_price_after_discount }}</span>
+                        </div>
+                    {% endif %}
+                </div>
+                </div>
+
+            {% endwith %}
+        {% endfor %}
     </div>
-  </div>
-</main>
-
-<!-- Item slider end-->
-
-
-<script>
-// Glider Configuration
-new Glider(document.querySelector(".glider"), {
-  slidesToShow: 1.5,
-  slidesToScroll: 1,
-  draggable: true,
-  dots: ".dots",
-  responsive: [
-    {
-      // If Screen Size More than 768px
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 1.5,
-        slidesToScroll: 1,
-        duration: 0.5,
-        arrows: {
-          prev: ".glider-prev",
-          next: ".glider-next"
-        }
-      }
-    },
-    {
-      // If Screen Size More than 1024px
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 2.5,
-        slidesToScroll: 1,
-        duration: 0.5,
-        arrows: {
-          prev: ".glider-prev",
-          next: ".glider-next"
-        }
-      }
-    }
-  ]
-});
-
-</script>
-</body>
-</html>
+    <div class="back-to-shop"><a href="{% url 'home' %}">&leftarrow;</a><span
+            class="text-muted">بازگشت به صفحه اصلی</span>
+        <a href="{% url "order_create" %}" class="button ">ادامه فرایند خرید</a>
+{% endblock %}

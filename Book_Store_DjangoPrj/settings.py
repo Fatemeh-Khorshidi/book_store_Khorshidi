@@ -14,9 +14,6 @@ from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
-
-
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -43,11 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #my app
     'Books',
-    'Payment',
+    # 'Payment',
     'User',
-    'Order',
-    'Cart',
-    'Discount',
+    'order',
+    'cart',
+    'coupons',
 
 
 
@@ -79,7 +76,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 #my edit
-                'Cart.context_processor.cart',
+                'cart.context_processor.cart',
             ],
         },
     },
@@ -95,7 +92,7 @@ AUTH_USER_MODEL = 'User.CustomUser'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'BookStore',
+        'NAME': 'book_store',
         'USER': 'postgres',
         'PASSWORD': '850258',
         'HOST': '127.0.0.1',
