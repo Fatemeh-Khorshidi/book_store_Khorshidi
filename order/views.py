@@ -2,9 +2,10 @@ from django.shortcuts import render
 from .models import OrderItem
 from .forms import OrderCreationForm
 from cart.cart import Cart
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-
+@login_required
 def order_create(request):
     cart = Cart(request)
     if request.method=='POST':
@@ -31,7 +32,7 @@ def order_create(request):
         form = OrderCreationForm()
         return render(request, 'create.html', {'form': form})
 
-
+@login_required
 def final_step(request) :
     if request.method=='POST':
         form = OrderCreationForm(request.POST)

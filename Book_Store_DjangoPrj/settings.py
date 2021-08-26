@@ -155,4 +155,9 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
 
+# ---For send email to user for change password-----
+EMAIL_HOST = "localhost"
+EMAIL_PORT = 1025
+# --------------------------------------------------
+
 CART_SESSION_ID = 'cart'

@@ -1,9 +1,12 @@
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
+from django.urls import reverse
 from django.views.generic import ListView, DetailView
 
 import Books
+from Books.forms import AddBookForm
 from Books.models import Book, Category
 # from Cart.forms import CartAddBookForm
 from cart.forms import CartAddBookForm
@@ -67,18 +70,6 @@ def search_results(request):
         return render(request, 'search_results.html', {})
 
 
-
-# def BookDetaiView(request):
-#     """
-#     Display details of each books; include title, author, image category and price.
-#     """
-#     book = get_object_or_404(Book, id=id, pk=id, available=True )
-#     cart_book_form = CartAddBookForm()
-#     model = Book
-#     template_name = 'Book_info.html'
-#     return render(request,'Book_info.html', {'book':book,
-#                                'cart_book_form':cart_book_form})
-#
 class BookDetaiView(DetailView):
     """
     Display details of each books; include title, author, image category and price.
@@ -113,3 +104,30 @@ class CategoryListView(ListView):
 
 def parches(reguest):
     return render(reguest, 'Cart.html', {})
+
+
+def add_books(request):
+    if request.method == 'POST':
+        # this is wehere POST request is accessed
+        form = AddBookForm(request.POST or None)
+        if form.is_valid():
+            temp = form.save(commit=False)
+
+            temp.save()
+            form = AddBookForm()
+        tasks = Book.objects.all().order_by('created_time')
+        return render(request, 'tasks.html', {'form': form, 'tasks': tasks})
+    else:
+
+        form = AddBookForm()
+        tasks = Book.objects.all().order_by('created_time')
+
+    return render(request, 'tasks.html', {'form': form, 'tasks': tasks})
+
+
+def delete(request, id):
+    if Book.objects.filter(id=id).delete():
+
+        return redirect(reverse('tasks'))
+    else:
+        return HttpResponse("You are not allowed to access this resource")

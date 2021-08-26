@@ -54,7 +54,7 @@
         <!-- /.awemenu -->
     <div>
         {% if user.is_authenticated %}
-            عزیز {{ user.username }}سلام
+           عزیز {{ user.username }} سلام
         {% else %}
 
             {#            <a href="{% url 'login' %}">ورود</a> |#}
@@ -86,10 +86,33 @@
                 </ul>
             </div>
 
-            <div class="hide-mobile">
-                <a href="#" class="icon-help " title="راهنما"><img src="{% static 'img/question.png' %}"></a>
+{#            <div class="hide-mobile">#}
+{#                <a href="#" class="icon-help " title="راهنما"><img src="{% static 'img/question.png' %}"></a>#}
+{#            </div>#}
+        {% if request.user.is_authenticated %}
+            {% if request.user.is_superuser %}
+            <div id="shoppingcart">
+                <a href="{% url 'dashboard' %}" title="داشبورد" class="icon-bag ">
+                    <span class="cart-count hidden"></span>
+                    <img src="{% static 'img/business-report.png' %}">
+                </a>
             </div>
-
+             {% elif request.user.is_staff %}
+                <div id="shoppingcart">
+                <a href="{% url 'StaffDashboard' %}" title="داشبورد" class="icon-bag ">
+                    <span class="cart-count hidden"></span>
+                    <img src="{% static 'img/business-report.png' %}">
+                </a>
+            </div>
+                {% else %}
+                <div id="shoppingcart">
+                <a href="{% url 'UserProfile' %}" title="پروفایل" class="icon-bag ">
+                    <span class="cart-count hidden"></span>
+                    <img src="{% static 'img/resume.png' %}">
+                </a>
+                </div>
+            {% endif %}
+        {% endif %}
             <div id="shoppingcart">
                 <a href="{% url 'cart_detail' %}" title="سبد خرید" class="icon-bag ">
                     <span class="cart-count hidden"></span>

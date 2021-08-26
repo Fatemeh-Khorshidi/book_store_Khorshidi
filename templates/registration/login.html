@@ -2,28 +2,39 @@
 {% load static %}
 {% block css %}
     <link href="{% static 'css/login_styles.css' %}" rel="stylesheet"/>
-<style>
-#refresh-rang{
- display: none!important;
-}
-</style>
+    <style>
+
+        label, input {
+            display: block;
+        }
+
+        span.helptext {
+            display: none;
+        }
+
+        #refresh-rang {
+            display: none !important;
+        }
+    </style>
 {% endblock css %}
 
 {% block content %}
     <div class="container">
-		<div class="card" style="margin-top: 10%; direction: rtl">
-			<div class="container-fliud">
-    <form method="post" id="email" class="login">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">ورود</button>
+        <div class="card" style="margin-top: 10%; direction: rtl">
+            <div class="container-fliud">
+                <form method="post" id="email" class="login">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">ورود</button>
 
-        <div class="regist">
-            <span>ثبت نام نکردی؟</span>
-            <a href="{% url 'signup' %}" type="submit">ثبت نام</a>
+                    <div class="regist">
+                        <span>ثبت نام نکردی؟</span>
+                        <a href="{% url 'signup' %}" type="submit">ثبت نام</a>
+                        <span>می خواهید رمز عبور خود را تغییر دهید؟</span>
+                        <a href="{% url 'password_reset' %}" type="submit"> تغییر رمز عبور</a>
 
-        </div>
-    </form>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
 from coupons.forms import CouponApplyForm
@@ -8,7 +9,7 @@ from .forms import CartAddBookForm
 
 
 # Create your views here.
-
+@login_required(login_url='login')
 def cart_add(request, book_id):
     cart = Cart(request)
     book = get_object_or_404(Book, id=book_id)
@@ -22,6 +23,7 @@ def cart_add(request, book_id):
         return redirect('cart_detail')
 
 
+@login_required
 def cart_remove(request, book_id):
     cart = Cart(request)
     book = get_object_or_404(Book, id=book_id)
@@ -29,6 +31,7 @@ def cart_remove(request, book_id):
     return redirect('cart_detail')
 
 
+@login_required
 def cart_detail(request):
     cart = Cart(request)
     for item in cart:

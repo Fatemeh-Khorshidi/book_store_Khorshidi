@@ -1,5 +1,5 @@
 from django.contrib import admin
-from User.models import CustomerProxy, CustomUser, Adminuser, Adminuser, EmployeeProxy
+from User.models import CustomerProxy, CustomUser, Adminuser, Adminuser, EmployeeProxy, Address
 from django.contrib.auth.admin import UserAdmin
 # from .forms import CustomUserCreationForm, CustomUserChangeForm
 
@@ -28,6 +28,7 @@ class CustomUserAdmin(UserAdmin):
 
 
 admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(Address)
 
 
 @admin.register(CustomerProxy)
@@ -36,13 +37,22 @@ class CustomerAdmin(admin.ModelAdmin):
         return CustomUser.objects.filter(is_staff=False, is_superuser=False)
 
 
+# admin.site.register(CustomerProxy, CustomerAdmin)
+
+
 @admin.register(Adminuser)
 class EmployeeAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         return CustomUser.objects.filter(is_staff=True, is_superuser=True)
 
 
+# admin.site.register(Adminuser, EmployeeAdmin)
+
+
 @admin.register(EmployeeProxy)
 class SupperAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         return CustomUser.objects.filter(is_staff=True, is_superuser=False)
+
+
+# admin.site.register(EmployeeProxy, SupperAdmin)

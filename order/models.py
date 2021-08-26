@@ -11,6 +11,9 @@ from Books.models import Book
 
 
 class Order(models.Model):
+    """
+    Order model
+    """
     first_name = models.CharField(max_length=40, blank=True, null=True)
     last_name = models.CharField(max_length=20, blank=True, null=True)
     # address = models.CharField(max_length=80)
@@ -23,9 +26,8 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     # update at...
     updated = models.DateTimeField(auto_now=True)
-    coupon = models.ForeignKey(Coupon, related_name='orders' , null=True, blank=True , on_delete=models.DO_NOTHING)
-    discount= models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)], null=True)
-
+    coupon = models.ForeignKey(Coupon, related_name='orders', null=True, blank=True, on_delete=models.DO_NOTHING)
+    discount = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)], null=True)
 
     class Meta:
         ordering = ('-created',)
@@ -33,11 +35,19 @@ class Order(models.Model):
     def __srt__(self):
         return 'Order {}'.format(self.id)
 
+    @property
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
     def get_total_cost(self):
-        total_cost =  sum(item.get_cost() for item in self.items.all())
-        return total_cost - total_cost *(self.discount / Decimal('100'))
+        total_cost = sum(item.get_cost() for item in self.items.all())
+        return total_cost - total_cost * (self.discount / Decimal('100'))
+
 
 class OrderItem(models.Model):
+    """
+    OrderItem model
+    """
     order = models.ForeignKey('Order', related_name='items', on_delete=models.PROTECT)
     book = models.ForeignKey('Books.Book', on_delete=models.DO_NOTHING, related_name='order_books')
     unit_price = models.IntegerField()
@@ -48,8 +58,3 @@ class OrderItem(models.Model):
 
     def __srt__(self):
         return '{}'.format(self.id)
-
-
-from django.db import models
-
-# Create your models here.

@@ -41,6 +41,8 @@ class CustomUser(AbstractUser):
     phone = models.CharField(max_length=24, blank=True, null=True)
     # email = models.EmailField()
     address = models.ForeignKey('Address', on_delete=models.CASCADE, null=True)
+
+
 class CustomerProxy(CustomUser):
     """
     customer model:

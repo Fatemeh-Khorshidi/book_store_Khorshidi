@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.utils.html import format_html
+
 from .models import Order,OrderItem
 # Register your models here.
 
@@ -9,9 +11,12 @@ class OrderItemInline(admin.TabularInline):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['id','first_name' , 'last_name', 'email', 'address']
-    list_filter = ['paid']
-    inlines = [OrderItemInline]
 
+    date_hierarchy = 'created'
+    list_display = ['id','full_name' , 'phone', 'email', 'address','paid', 'created']
+    list_filter = ['paid', 'created', 'updated']
+    search_fields = ('title', 'author', 'percentage_discount', 'cash_sale')
+    inlines = [OrderItemInline]
+    save_on_top = True
 
 admin.site.register(Order,OrderAdmin)
