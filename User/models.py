@@ -38,8 +38,8 @@ class CustomUser(AbstractUser):
     phone = models.CharField(max_length=24, blank=True, null=True)
 
     # USERNAME_FIELD = ('email', 'username')
-    # USERNAME_FIELD = 'email'
-    # REQUIRED_FIELDS = []
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
     @property
     def full_name(self):
