@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block css %}
+    <link href="{% static 'css/cart_styles.css' %}" rel="stylesheet"/>
+
+{% endblock css %}
+{% block content %}
+    <div class="card cart" style="margin-top: 10%; direction: rtl">
+        <h1>ویرایش اطلاعات کتاب</h1>
+        <form action="" method="post">{% csrf_token %}
+            {{ form.as_p }}
+            <button class="add-to-cart btn-default" type="submit">ثبت</button>
+        </form>
+{% endblock content %}

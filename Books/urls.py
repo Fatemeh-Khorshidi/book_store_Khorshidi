@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from Books.views import HomeListView, search_results, parches, CategoryListView, BookDetaiView
+from Books.views import HomeListView, search_results, CategoryListView, BookDetaiView
 
 urlpatterns = [
     # home page

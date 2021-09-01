@@ -22,20 +22,21 @@
                         <div class="row border-top border-bottom">
                             <div class="row main align-items-center">
                                 <div class="col-2 offset-1" style="direction: initial;"><img class="img-fluid" src="
+
                                         {% if book.image %}{{ book.image.url }}{% else %}{% static 'img/the-forty-rules-of-love.jpg' %}{% endif %}">
                                 </div>
                                 <div class="col-4">
                                     <div class="row text-muted">{{ book.title }}</div>
 
                                 </div>
-                                {#                                <div class="col">#}
-                                {#                                    <form action="{% url "cart_add" book.id %}" method="post">#}
-                                {#                                        {{ item.update_quantity_form.quantity }}#}
-                                {#                                        {{ item.update_quantity_form.update }}#}
-                                {#                                        <input type="submit" value="update">#}
-                                {#                                        {% csrf_token %}#}
-                                {#                                    </form>#}
-                                {#                                </div>#}
+                                <div class="col">
+                                    <form action="{% url "cart_add" book.id %}" method="post">
+                                        {{ item.update_quantity_form.quantity }}
+                                        {{ item.update_quantity_form.update }}
+                                        <input type="submit" value="update">
+                                        {% csrf_token %}
+                                    </form>
+                                </div>
                                 <div class="col-2"> {{ book.price }} تومان</div>
                                 <div class="col-2"> {{ book.total_price }} تومان</div>
                                 <div class="col-1"><a href="{% url 'cart_remove' book.id %}"><span
@@ -44,8 +45,12 @@
                         </div>
                     </div>
 
+               
 
-                    <div class="col-md-4 summary">
+            {% endwith %}
+             
+        {% endfor %}
+    <div class="col-md-4 summary">
                         <div>
                             <h5><b>فاکتور خرید</b></h5>
                         </div>
@@ -56,11 +61,11 @@
                             <div class="col text-right">{{ cart.get_total_price }} هزار تومان</div>
                         </div>
                         <p>کد تخفیف دارید؟ وارد کنید:</p>
-{#                        <form action="{% url "apply" %}" method="post">#}
-{#                            {{ discount_apply_form }}#}
-{#                            <input type="submit" value="ثبت">#}
-{#                            {% csrf_token %}#}
-{#                        </form>#}
+                        {#                        <form action="{% url "apply" %}" method="post">#}
+                        {#                            {{ discount_apply_form }}#}
+                        {#                            <input type="submit" value="ثبت">#}
+                        {#                            {% csrf_token %}#}
+                        {#                        </form>#}
                         <div style="background-color: red">
                             {#                        {{ cart.coupon }}#}
                             {% if cart.coupon %}
@@ -87,11 +92,7 @@
                         </form>
 
 
-                    </div>
-                </div>
-
-            {% endwith %}
-        {% endfor %}
+             </div></div>
     </div>
     <div class="back-to-shop"><a href="{% url 'home' %}">&leftarrow;</a><span
             class="text-muted">بازگشت به صفحه اصلی</span>

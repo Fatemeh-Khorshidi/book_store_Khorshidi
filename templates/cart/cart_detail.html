@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <link href="{% static 'css/cart_styles.css' %}" rel="stylesheet"/>
+
+{% endblock css %}
+{% block content %}
+    <div class="card cart" style="margin-top: 10%; direction: rtl">
+        <div class="row">
+            <div class="title">
+
+                <div class="Top_nav about-store-description bannerComponent bb-incart btn-lg c col-12">
+                    <div class="col">سبد خرید
+                    </div>
+                    {#                        <div class="col align-self-center text-right text-muted"#}
+                    {#                             style="text-align: end">{{ cart.quantity }}<span#}
+                    {#                                style="direction: rtl">  :تعداد کتاب های خریداری شده</span></div>#}
+                </div>
+            </div>
+
+            <div class="col-md-8 ">
+
+                {% for item in cart %}
+                    {% with book=item.book %}
+                        <div class="col-md-12 ">
+
+                            <div class=" border-top border-bottom">
+                                <div class=" main align-items-center">
+                                    <div class="row">
+                                        <div class="col-2 " style="direction: initial;"><img class="img-fluid" src="
+
+                                                {% if book.image %}{{ book.image.url }}{% else %}{% static 'img/the-forty-rules-of-love.jpg' %}{% endif %}">
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="row text-muted">{{ book.title }}</div>
+
+                                        </div>
+                                        <div class="col-2">
+
+                                            <div class="row text-muted">{{ item.quantity }}</div>
+                                            <span>عدد</span>
+                                        </div>
+                                        <div class="col-2"> {{ book.price }} تومان</div>
+                                        <div class="col-2"> {{ book.total_price }} تومان</div>
+                                        <div class="col-1"><a href="{% url 'cart_remove' book.id %}"><span
+                                                class="close" style="font-size: large;">&#10005;</span></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    {% endwith %}
+                {% endfor %}
+            </div>
+
+            <div class="col-md-4 summary">
+                <div>
+                    <h5><b>فاکتور خرید</b></h5>
+                </div>
+                <hr>
+                <div class="row">
+                    <span class="col">هزینه کل</span>
+                    <div class="col" style="padding-left:0;">{{ item.quantity }}</div>
+                    {#                            <div class="col text-right">{{ book.get_total_price }} هزار تومان</div>#}
+                    <div class="col text-right">{{ cart.get_total_price }} هزار تومان</div>
+                </div>
+                <div class="col">
+                    <p>کد تخفیف دارید؟ وارد کنید:</p>
+                    {#                        <form action="{% url "apply" %}" method="post">#}
+                    {#                            {{ discount_apply_form }}#}
+                    {#                            <input type="submit" value="ثبت">#}
+                    {#                            {% csrf_token %}#}
+                    {#                        </form>#}
+
+                    <form action="{% url "apply" %}" method="post">
+                        {{ discount_apply_form }}
+                        <input class="add-to-cart btn-default" type="submit" value="ثبت ">
+                        {% csrf_token %}
+                    </form>
+                </div>
+                <div class="col">
+                    {#                        {{ cart.coupon }}#}
+                    {% if cart.coupon %}
+                        {#                                {{ cart.get_total_price }}#}
+                        <div style="">
+                            {% with code=cart.coupon.code discount=cart.coupon.discount %}
+                                <spas>کد {{ code }}  </spas><span> شامل% {{ discount }} تخفیف  </span>
+                            {% endwith %}
+                        </div>
+                        <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                            <div class="col">{{ cart.get_discount }}</div>
+                            <div class="col">
+                                <span class="num col text-right">{{ cart.get_total_price_after_discount }}</span>
+                            </div>
+                        </div>
+                    {% else %}
+                        <p>کد وارد شده صحیح نمی باشد.</p>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="back-to-shop  ">
+
+        <div class="row" style="margin: 0 4% 6%;">
+            <div class="col-md-6 ">
+                <a lass="col-6" href="{% url 'home' %}">&leftarrow;<span
+                        class="text-muted">بازگشت به صفحه اصلی</span></a>
+            </div>
+            <div class="col-md-6 " style="text-align: end">
+                <a lass="col-6" href="{% url "order_create" %}" class="button ">ادامه فرایند خرید</a>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

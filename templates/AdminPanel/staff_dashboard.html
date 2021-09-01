@@ -47,7 +47,7 @@
                     <i class="fa fa-fw fa-dashboard"></i> <span class="nav-link-text"> اضافه کردن کتاب جدید</span>
                 </a>
             </li>
-            {# --------------------------This is a modal--------------------#}
+            {# --------------------------Add new book modal--------------------#}
             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -62,11 +62,12 @@
                             <form action="" method="POST" class="ui form" enctype='multipart/form-data'>
                                 {% csrf_token %}
                                 {{ form.as_p }}
+                                <button type="submit" class="btn btn-primary">ذخیره اطلاعات</button>
                             </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
-                            <button type="button" class="btn btn-primary">ذخیره اطلاعات</button>
+
                         </div>
                     </div>
                 </div>
@@ -91,7 +92,7 @@
                     <span class="nav-link-text">اضافه کردن دسته بندی جدید</span>
                 </a>
             </li>
-        {# --------------------------This is a modal--------------------#}
+        {# --------------------------Add new collection modal--------------------#}
             <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -110,7 +111,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
-                            <button type="button" class="btn btn-primary">ذخیره اطلاعات</button>
+                            <button type="submit" class="btn btn-primary">ذخیره اطلاعات</button>
                         </div>
                     </div>
                 </div>
@@ -375,17 +376,6 @@
 
                         </tr>
                         </thead>
-                        <tfoot>
-                        {#                <tr>#}
-                        {#                   <th>title</th>#}
-                        {#                  <th>author</th>#}
-                        {#                  <th>category</th>#}
-                        {#                  <th>price</th>#}
-                        {#                  <th>inventory</th>#}
-                        {#                  <th>percentage discount</th>#}
-                        {#                  <th>cash sale</th>#}
-                        {#                </tr>#}
-                        </tfoot>
                         <tbody>
                         {% for book in Books %}
                             <tr>
@@ -396,8 +386,31 @@
                                 <td>{{ book.inventory }}</td>
                                 <td>{{ book.percentage_discount }}</td>
                                 <td>{{ book.cash_sale }}</td>
-                                <td><a href="#" class="float-right" style="padding-left: 10px;" data-toggle="tooltip" title="Delete">ویرایش</a></td>
-                                <td><a href="{% url 'delete_book' task.pk %}" class="float-right" style="padding-left: 10px;" data-toggle="tooltip" title="Delete">&#10007;</a></td>
+                                <td><a href="{% url 'book_edit' book.pk %}" class="float-right" style="padding-left: 10px;" data-toggle="tooltip" title="ویرایش">ویرایش</a></td>
+                                <td><a  data-toggle="modal" data-target="#exampleModalCenter3" class="float-right" style="padding-left: 10px;" title="Delete">&#10007;</a></td>
+                                {# --------------------------Assurance modal for delete books--------------------#}
+                                <div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog"
+                                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">افزودن کتاب جدید</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <p>آیا از حدف کتاب {{ book.title }} اطمینان دارید؟</p>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                                                <a href="{% url 'delete_book' book.pk %}" type="button" class="btn btn-primary">حذف</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {#--------------------------End of modal--------------------------#}
+
+
                             </tr>
                         {% endfor %}
                         </tbody>

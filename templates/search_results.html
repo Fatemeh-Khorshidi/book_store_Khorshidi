@@ -8,8 +8,8 @@
     {% if searched %}
         <h2> نتایج جستجو شده برای {{ searched }}:</h2>
         {% for result in results %}
-{#            <a href="{% url '' %}"></a>#}
-            {{ result }}
+            <a href="{% url 'BookList' result.pk %}">{{ result }}</a>
+
         {% endfor %}
     {% endif %}
     </div>

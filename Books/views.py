@@ -101,33 +101,3 @@ class CategoryListView(ListView):
 
         return context
 
-
-def parches(reguest):
-    return render(reguest, 'Cart.html', {})
-
-
-def add_books(request):
-    if request.method == 'POST':
-        # this is wehere POST request is accessed
-        form = AddBookForm(request.POST or None)
-        if form.is_valid():
-            temp = form.save(commit=False)
-
-            temp.save()
-            form = AddBookForm()
-        tasks = Book.objects.all().order_by('created_time')
-        return render(request, 'tasks.html', {'form': form, 'tasks': tasks})
-    else:
-
-        form = AddBookForm()
-        tasks = Book.objects.all().order_by('created_time')
-
-    return render(request, 'tasks.html', {'form': form, 'tasks': tasks})
-
-
-def delete(request, id):
-    if Book.objects.filter(id=id).delete():
-
-        return redirect(reverse('tasks'))
-    else:
-        return HttpResponse("You are not allowed to access this resource")

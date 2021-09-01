@@ -1,5 +1,7 @@
 from decimal import Decimal
 from django.conf import settings
+from django.http import HttpResponse
+
 from Books.models import Book
 from coupons.models import Coupon
 
@@ -19,7 +21,6 @@ class Cart(object):
 
         self.cart = cart
         self.coupon_id = self.session.get('coupon_id')
-        # self.coupons_id = self.session.get('coupon_id')
 
     def __len__(self):
         """
@@ -52,16 +53,26 @@ class Cart(object):
         :param update_count:
         :return:
         """
+        # books= Book.objects.get(book.id)
+        # print(books)
         # book_id = self.cart.keys()
         book_id = str(book.id)
         if book_id not in self.cart:
+            # if books.inventory >0:
             self.cart[book_id] = {'quantity': 0,
-                                  'price': str(book.price)}
+                                      'price': str(book.price)}
+            # else:
+                # return HttpResponse("کتاب مورد نظر موجود نیست")
         if update_quantity:
+            # if books.inventory > 0:
             self.cart[book_id]['quantity'] = quantity
+
         else:
+            # if books.inventory > 0:
             self.cart[book_id]['quantity'] += quantity
 
+        book.inventory = book.inventory - self.cart[book_id]['quantity']
+        book.save()
         self.save()
 
     def remove(self, book):

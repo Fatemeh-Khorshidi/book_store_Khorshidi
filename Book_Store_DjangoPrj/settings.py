@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #my app
     'Books',
-    # 'Payment',
     'User',
     'order',
     'cart',
@@ -153,6 +152,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+LOGIN_URL = 'users/login/'
+
 
 
 # ---For send email to user for change password-----
@@ -161,3 +162,5 @@ EMAIL_PORT = 1025
 # --------------------------------------------------
 
 CART_SESSION_ID = 'cart'
+
+# SESSION_SAVE_EVERY_REQUEST = 'True'

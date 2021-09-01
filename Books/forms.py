@@ -13,21 +13,20 @@ class AddBookForm(ModelForm):
             forms.Textarea(attrs={'placeholder': "توضیح کتاب", 'cols': 100, 'rows': 8})
         }
 
-    def clean(self):
-        # data from the form is fetched using super function
-        super(AddBookForm, self).clean()
+class EditBookForm(ModelForm):
+    class Meta:
+        model = Book
+        fields = ['title', 'author', 'category', 'price', 'image', 'inventory','book_info']
 
-        # extract the title and text field from the data
-        title = self.cleaned_data.get('title')
-        book_info = self.cleaned_data.get('book_info')
-        return self.cleaned_data
+        widgets = {
+            forms.Textarea(attrs={'placeholder': "توضیح کتاب", 'cols': 100, 'rows': 8})
+        }
 
 
 class AddCategoryForm(ModelForm):
     class Meta:
         model = Category
         fields = '__all__'
-
 
     def clean(self):
         # data from the form is fetched using super function

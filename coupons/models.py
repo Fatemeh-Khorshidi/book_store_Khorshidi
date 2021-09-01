@@ -27,6 +27,12 @@ class Discount(models.Model):
     class Meta:
         abstract = True
 
+    def each_usage(self):
+        # num_uses
+        pass
+
+    def __str__(self):
+        return f'{self.name} '
 
 class Coupon(BaseModel, Discount):
     """

@@ -31,6 +31,8 @@ class Order(models.Model):
 
     class Meta:
         ordering = ('-created',)
+        verbose_name = 'سفارش'
+        verbose_name_plural = 'سفارشات'
 
     def __srt__(self):
         return 'Order {}'.format(self.id)

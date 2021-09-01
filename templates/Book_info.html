@@ -12,8 +12,8 @@
                     <div class="preview col-md-6">
 
                         <div class="preview-pic tab-content">
-                            <div class="tab-pane active" id="pic-1" style="max-width: 50%; margin: auto;"><img
-                                    src="{{ object.image.url }}"/></div>
+                            <div class="tab-pane active" id="pic-1" style="max-width: 50%; margin: auto;" >
+                                <img src="{{ object.image.url }}"/></div>
 
                         </div>
 
@@ -34,7 +34,8 @@
                         <p class="product-description">
                             {{ object.book_info }}
                         </p>
-                        <h4 class="price"> قیمت: <span>{{ object.price }}</span>هزار تومان </h4>
+                        <h4 class="price"> قیمت: <span class="" style="text-decoration: line-through;">{{ object.price }}</span>هزار تومان </h4>
+                        <h4 class="price"> قیمت جدید: <span >{{ object.Percentage_sale}}</span>هزار تومان </h4>
 
                         <div class="action">
 

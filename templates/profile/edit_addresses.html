@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link href="{% static 'css/cart_styles.css' %}" rel="stylesheet"/>
+
+{% endblock css %}
+{% block content %}
+<div class="card cart" style="margin-top: 10%;padding: 10%; direction: rtl">
+<form name="address_form" class="account-form" method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p  }}
+     <button class="add-to-cart btn-default" type="button" value="Submit" onclick="submitForm()">
+   ثبت
+    </button>
+</form>
+</div>
+<script>
+function submitForm() {
+   var form = document.getElementsByName('address_form')[0];
+   form.submit(); // Submit the form
+   form.reset();  // Reset all form data
+   return false; // Prevent page refresh
+}
+</script>
+{% endblock content %}

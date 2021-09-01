@@ -3,9 +3,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
-# from phonenumber_field.modelfields import PhoneNumberField
-# Create your models here.
-#
+
 class BaseModel(models.Model):
     """
     the fields of this model are in all of models
@@ -33,14 +31,23 @@ class BaseModel(models.Model):
 class CustomUser(AbstractUser):
     # is_staff =
     # is_superuser =
+    email = models.EmailField( unique=True)
     age = models.PositiveIntegerField(null=True, blank=True)
-    # first_name = models.CharField(max_length=40, blank=True, null=True)
-    # last_name = models.CharField(max_length=20, blank=True, null=True)
-    # username = models.CharField(max_length=80)
-    # password = models.CharField(max_length=10)
+    first_name = models.CharField(max_length=40, blank=True, null=True)
+    last_name = models.CharField(max_length=20, blank=True, null=True)
     phone = models.CharField(max_length=24, blank=True, null=True)
-    # email = models.EmailField()
-    address = models.ForeignKey('Address', on_delete=models.CASCADE, null=True)
+
+    # USERNAME_FIELD = ('email', 'username')
+    # USERNAME_FIELD = 'email'
+    # REQUIRED_FIELDS = []
+
+    @property
+    def full_name(self):
+        """
+        Return the first_name plus the last_name, with a space in between.
+        """
+        full_name = '%s %s' % (self.first_name, self.last_name)
+        return full_name
 
 
 class CustomerProxy(CustomUser):
@@ -92,6 +99,8 @@ class Address(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     # update at...
     updated = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey('CustomerProxy', on_delete=models.CASCADE, null=True)
+    default = models.BooleanField( default=False)
 
     # class Meta:
     #     abstract = True

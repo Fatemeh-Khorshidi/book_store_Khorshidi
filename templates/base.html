@@ -106,7 +106,7 @@
             </div>
                 {% else %}
                 <div id="shoppingcart">
-                <a href="{% url 'UserProfile' %}" title="پروفایل" class="icon-bag ">
+                <a href="{% url 'UserEditView' request.user.pk %}" title="پروفایل" class="icon-bag">
                     <span class="cart-count hidden"></span>
                     <img src="{% static 'img/resume.png' %}">
                 </a>
@@ -155,33 +155,6 @@
     {#------------------------Top menu bar for display categories ----------------------------#}
     <nav class="Top_nav" data-sub-nav="">
         <div class="header-nav refresh-container" dir="rtl" data-sub-nav="">
-            <div>
-                {#        ------------------------        #}
-                {#        <div class="mobile-nav-close">#}
-                {#            <p data-nav-toggle="" class="gae-click*Global*Header*Mobile-Nav-Close">#}
-                {#                <span class="icon-close" style="top:4px;margin-left:3px;" data-nav-toggle=""></span>#}
-                {#                <span style="font-size:14px;">#}
-                {#                    بستن#}
-                {#                </span>#}
-                {#            </p>#}
-                {#        </div>#}
-                {#        <div class="search-section alireza">#}
-                {#            <div class="search-dropdown">#}
-                {#                <div class="refresh-container search-container">#}
-                {#                    <form id="searchFormmob" action="/search" method="get" class="nav-search-form">#}
-                {#                        <input type="hidden" name="department">#}
-                {#                        <input id="globalSearchFieldInputmob" type="search" name="term" style="text-align:right"#}
-                {#                               class="search-input" placeholder="جستجو کنید" accesskey="s" autocomplete="off">#}
-                {#                        <button type="submit" class="search-submit">#}
-                {#                            <div class="icon-search" style="margin-top:3px;"></div>#}
-                {#                        </button>#}
-                {#                    </form>#}
-                {##}
-                {#                </div>#}
-                {#            </div>#}
-                {#        </div>#}
-                {#        #--------------------------------}#}
-            </div>
             <ul class="">
                 {% for category in categories %}
                     <li>
@@ -244,7 +217,7 @@
                         }
                     </script>
 {#footer#}
-<div id="refresh-rang">
+<div id="refresh-rang" style="position: fixed; bottom: 0">
 
 
     <div class="footer-bg row" dir="rtl">
