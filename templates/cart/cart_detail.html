@@ -2,7 +2,12 @@
 {% load static %}
 {% block css %}
     <link href="{% static 'css/cart_styles.css' %}" rel="stylesheet"/>
-
+<style>
+.center_items{
+    display: flex;
+    justify-content: center;
+}
+</style>
 {% endblock css %}
 {% block content %}
     <div class="card cart" style="margin-top: 10%; direction: rtl">
@@ -27,22 +32,22 @@
                             <div class=" border-top border-bottom">
                                 <div class=" main align-items-center">
                                     <div class="row">
-                                        <div class="col-2 " style="direction: initial;"><img class="img-fluid" src="
+                                        <div class="col-2 center_items " style="direction: initial;"><img class="img-fluid" src="
 
                                                 {% if book.image %}{{ book.image.url }}{% else %}{% static 'img/the-forty-rules-of-love.jpg' %}{% endif %}">
                                         </div>
-                                        <div class="col-3">
+                                        <div class="col-3 center_items">
                                             <div class="row text-muted">{{ book.title }}</div>
 
                                         </div>
-                                        <div class="col-2">
+                                        <div class="col-2 center_items">
 
-                                            <div class="row text-muted">{{ item.quantity }}</div>
-                                            <span>عدد</span>
+                                            <div class=" text-muted">{{ item.quantity }}<span>عدد</span></div>
+
                                         </div>
-                                        <div class="col-2"> {{ book.price }} تومان</div>
-                                        <div class="col-2"> {{ book.total_price }} تومان</div>
-                                        <div class="col-1"><a href="{% url 'cart_remove' book.id %}"><span
+                                        <div class="col-2 center_items"> {{ book.price }} تومان</div>
+                                        <div class="col-2 center_items"> {{ book.total_price }} تومان</div>
+                                        <div class="col-1 center_items"><a href="{% url 'cart_remove' book.id %}"><span
                                                 class="close" style="font-size: large;">&#10005;</span></a></div>
                                     </div>
                                 </div>
@@ -91,7 +96,7 @@
                         <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                             <div class="col">{{ cart.get_discount }}</div>
                             <div class="col">
-                                <span class="num col text-right">{{ cart.get_total_price_after_discount }}</span>
+                                <span class="num col text-right"><span>قیمت نهایی:</span>{{ cart.get_total_price_after_discount }}</span>
                             </div>
                         </div>
                     {% else %}

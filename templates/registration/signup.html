@@ -17,7 +17,10 @@ label, input {
 {% endblock css %}
 
 {% block content %}
-    <form method="post" id="email" class="login" >
+        <div class="container">
+        <div class="card" style=" ">
+            <div class="container-fliud ">
+    <form method="post" id="email" class="login" style="direction: rtl" >
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">ورود</button>
@@ -27,7 +30,9 @@ label, input {
 
         </div>
     </form>
-
+            </div>
+        </div>
+        </div>
 
 {% endblock content %}
 {% block js %}

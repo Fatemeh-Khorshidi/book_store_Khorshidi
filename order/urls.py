@@ -8,7 +8,6 @@ from .views import order_create,final_step
 
 urlpatterns = [
     # order page
-    # url(r'^create/$', views.order_create, name ='order_create'),
     path('create/', order_create, name ='order_create'),
     # The page of
     path('created/', final_step, name ='final_step'),

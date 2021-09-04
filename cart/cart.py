@@ -60,9 +60,9 @@ class Cart(object):
         if book_id not in self.cart:
             # if books.inventory >0:
             self.cart[book_id] = {'quantity': 0,
-                                      'price': str(book.price)}
+                                  'price': str(book.price)}
             # else:
-                # return HttpResponse("کتاب مورد نظر موجود نیست")
+            # return HttpResponse("کتاب مورد نظر موجود نیست")
         if update_quantity:
             # if books.inventory > 0:
             self.cart[book_id]['quantity'] = quantity
@@ -92,9 +92,15 @@ class Cart(object):
         self.session.modified = True
 
     def clear(self):
-        # empty cart
-        self.session[settings.CART_SESSION_ID] = {}
+        # Remove basket from session
+        del self.session[settings.BASKET_SESSION_ID]
         self.session.modified = True
+        self.save()
+
+    # def clear(self):
+    #     # empty cart
+    #     self.session[settings.CART_SESSION_ID] = {}
+    #     self.session.modified = True
 
     def get_total_price(self):
         return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
@@ -102,7 +108,7 @@ class Cart(object):
     @property
     def coupon(self):
         if self.coupon_id:
-            return Coupon.objects.get(id = self.coupon_id)
+            return Coupon.objects.get(id=self.coupon_id)
         return None
 
     def get_discount(self):

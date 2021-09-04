@@ -513,9 +513,10 @@
 
                                 <div class="glider">
                                 {% for item in sixth_group %}
+                                    <a href="{% url 'BookList' item.pk %}">
                                         <div class="card-image">
-                                          <a href="{% url 'BookList' item.pk %}">  <img src="{{ item.image.url }}" alt="Slider Image">
-                                        </a></div>
+                                            <img src="{{ item.image.url }}" alt="Slider Image">
+                                        </div></a>
                                 {% endfor %}
                                 </div>
 

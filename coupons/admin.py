@@ -3,8 +3,6 @@ from .models import Coupon
 from coupons.models import Coupon, Percentage_discount, Cash_discount
 
 
-# Register your models here.
-
 class CouponAdmin(admin.ModelAdmin):
     date_hierarchy = 'valid_to'
     list_display = ['name', 'num_uses', 'active', 'code', 'valid_from', 'valid_to', 'discount']

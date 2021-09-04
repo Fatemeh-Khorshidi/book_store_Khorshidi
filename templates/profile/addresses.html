@@ -9,9 +9,9 @@
 <h1 class="h2">آدرس های شما</h1>
 
 <hr/>
-<div class="container px-0">
+<div class="container-fluid px-0">
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-    <div class="col">
+    <div class="col-6">
       <a href="{% url "add_address" %}" class="text-reset text-decoration-none" role="button"
         style="max-width: 540px;">
         <div class="card mb-3 h-100" style="border: dashed 2px #ccc;">
@@ -31,7 +31,7 @@
       </a>
     </div>
     {% for address in addresses %}
-    <div class="col">
+    <div class="col-6">
       <div class="card pb-3">
         <div class="card-header bg-white small text-muted">
           {% if address.default %}
@@ -58,6 +58,18 @@
     </div>
     {% endfor %}
   </div>
+<div class="back-to-shop  ">
+
+        <div class="row" style="margin: 0 4% 6%;">
+             <div class="col-md-6 " style="text-align: end">
+                <a class="col-6 text-muted" href="{% url "order_create" %}" >ادامه فرایند خرید</a>
+            </div>
+            <div class="col-md-6 ">
+                <a class="col-6 text-muted" href="{% url 'home' %}">&leftarrow;<span >بازگشت به صفحه اصلی</span></a>
+            </div>
+
+        </div>
+</div>
 </div>
     </div>
     <script>

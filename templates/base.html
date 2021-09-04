@@ -54,7 +54,7 @@
         <!-- /.awemenu -->
     <div>
         {% if user.is_authenticated %}
-           عزیز {{ user.username }} سلام
+          <span>سلام</span>  {{ user.username }} <span> عزیز</span>
         {% else %}
 
             {#            <a href="{% url 'login' %}">ورود</a> |#}

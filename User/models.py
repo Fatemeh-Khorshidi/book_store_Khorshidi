@@ -3,7 +3,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
-
 class BaseModel(models.Model):
     """
     the fields of this model are in all of models
@@ -28,16 +27,16 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
 
+
 class CustomUser(AbstractUser):
     # is_staff =
     # is_superuser =
-    email = models.EmailField( unique=True)
+    email = models.EmailField(unique=True)
     age = models.PositiveIntegerField(null=True, blank=True)
     first_name = models.CharField(max_length=40, blank=True, null=True)
     last_name = models.CharField(max_length=20, blank=True, null=True)
     phone = models.CharField(max_length=24, blank=True, null=True)
 
-    # USERNAME_FIELD = ('email', 'username')
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
@@ -62,7 +61,6 @@ class CustomerProxy(CustomUser):
         verbose_name_plural = 'مشتری ها'
 
 
-
 class Adminuser(CustomUser):
     # name = models.CharField(max_length=40)
 
@@ -77,6 +75,7 @@ class EmployeeProxy(CustomUser):
     Employee model:
 
     """
+
     # name = models.CharField(max_length=40)
 
     class Meta:
@@ -100,7 +99,7 @@ class Address(models.Model):
     # update at...
     updated = models.DateTimeField(auto_now=True)
     user = models.ForeignKey('CustomerProxy', on_delete=models.CASCADE, null=True)
-    default = models.BooleanField( default=False)
+    default = models.BooleanField(default=False)
 
     # class Meta:
     #     abstract = True

@@ -1,8 +1,6 @@
 from datetime import datetime
-
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
-# Create your models here.
 from coupons.managers import DiscountBaseManager
 from User.models import BaseModel
 
@@ -33,6 +31,7 @@ class Discount(models.Model):
 
     def __str__(self):
         return f'{self.name} '
+
 
 class Coupon(BaseModel, Discount):
     """

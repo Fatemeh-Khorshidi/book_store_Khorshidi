@@ -1,8 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django import forms
-
-from Books.models import Book
 from User.models import CustomerProxy, Adminuser, EmployeeProxy, Address
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import CustomUser

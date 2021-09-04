@@ -1,7 +1,5 @@
 from django.db import models
-from coupons.models import Percentage_discount,Cash_discount
-
-# Create your models here.
+from coupons.models import Percentage_discount, Cash_discount
 from User.models import BaseModel
 
 
@@ -20,20 +18,24 @@ class Book(BaseModel):
     book_info = models.TextField(null=True, blank=True)
     inventory = models.IntegerField(default=0)
 
-    percentage_discount = models.ForeignKey('coupons.Percentage_discount', on_delete=models.DO_NOTHING, null=True, blank=True,
+    percentage_discount = models.ForeignKey('coupons.Percentage_discount', on_delete=models.DO_NOTHING, null=True,
+                                            blank=True,
                                             related_name='percentage_discount')
     cash_sale = models.ForeignKey('coupons.Cash_discount', on_delete=models.DO_NOTHING, null=True, blank=True,
                                   related_name='cash_sale')
 
+    # count_CHOICES = [(i, str(i)) for i in range(0,inventory)]
+    # quantity = models.IntegerField(choices=count_CHOICES, null=True)
+
     class Meta:
         verbose_name = 'کتاب'
         verbose_name_plural = 'کتاب ها'
+
     @property
     def have_discount(self):
         if self.percentage_discount == 'Null' and self.percentage_discount == 'Null':
             return False
         return True
-
 
     def Percentage_sale(self):
         """
@@ -43,16 +45,20 @@ class Book(BaseModel):
             new_price = self.price - self.cash_sale.amount
             return new_price
         elif self.percentage_discount:
-            new_price = int(self.price * (100 - self.percentage_discount.percentage)/ 100)
+            new_price = int(self.price * (100 - self.percentage_discount.percentage) / 100)
             return new_price
-
-
 
     def __str__(self):
         return f'{self.title} '
 
     def have_inventory(self):
+        # print()
         return int(self.inventory)
+
+    # count_CHOICES = [(i, str(i)) for i in range(0, have_inventory)]
+    # print(count_CHOICES)
+
+
 
 
 class Category(models.Model):

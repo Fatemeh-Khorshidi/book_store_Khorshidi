@@ -19,7 +19,7 @@ class MyModelAdmin(admin.ModelAdmin):
 
     # نمایش ستون های دلخواه در ادمین
 
-    list_display = ('title', 'author', 'category', 'price', 'image', 'inventory', 'created_time','edit_btn')
+    list_display = ('title', 'author', 'category', 'price', 'image', 'inventory', 'created_time', 'edit_btn')
 
     # لینک دار شدن ستون جهت رفتن به صفحه ادیت
     list_display_links = ('edit_btn',)

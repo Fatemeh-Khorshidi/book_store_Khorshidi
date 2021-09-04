@@ -1,14 +1,6 @@
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404, redirect
-
-# Create your views here.
-from django.urls import reverse
+from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-
-import Books
-from Books.forms import AddBookForm
 from Books.models import Book, Category
-# from Cart.forms import CartAddBookForm
 from cart.forms import CartAddBookForm
 
 
@@ -21,7 +13,6 @@ class HomeListView(ListView):
     context_object_name = 'books_list'
     template_name = 'index.html'
 
-    # queryset =
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(HomeListView, self).get_context_data(**kwargs)
         pk = self.kwargs.get('pk')
@@ -36,6 +27,7 @@ class HomeListView(ListView):
         context['categories'] = Category.objects.all()
         print(context['second_group'])
         return context
+
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 class MenuView(ListView):
@@ -97,7 +89,6 @@ class CategoryListView(ListView):
         context = super().get_context_data(**kwargs)
         pk = self.kwargs.get('pk')
         print(pk)
-        context['Cat_Book'] =  Book.objects.filter(category__id =pk)
+        context['Cat_Book'] = Book.objects.filter(category__id=pk)
 
         return context
-

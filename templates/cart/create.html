@@ -16,17 +16,26 @@
                                 <li>{{ item.quantity }} * {{ item.book.name }}<span>{{ item.total_price }}</span></li>
 
                             {% endfor %}
+                        {% if cart.coupon %}
                         <p class="card-text">مجموع کل: {{ cart.get_total_price }} </p>
+                            <span class="num col text-right"><span>قیمت نهایی پس از اعمال تخفیف:</span>{{ cart.get_total_price_after_discount }}</span>
+                        {% else %}
+                            <p class="card-text">مجموع کل: {{ cart.get_total_price }} </p>
+                    {% endif %}
                     </div>
                 </div>
 
             </div>
             <div class="col-sm-4">
-                <form action="{% url 'final_step' %}" method="" class="order-form">
-                    {{ form.as_p }}
-                    <p><input class="add-to-cart btn-default" type="submit" value="ثبت"></p>
+                <a href="{% url 'add_address' %}">انتخاب ادرس</a>
+                <form action="{% url 'final_step' %}" method="POST" class="order-form">
                     {% csrf_token %}
+                    {{ form.as_p }}
+                    <p><input class="add-to-cart btn-default" type="submit" value="ثبت نهایی"></p>
+
                 </form>
+
             </div>
+        </div>
         </div>
 {% endblock %}

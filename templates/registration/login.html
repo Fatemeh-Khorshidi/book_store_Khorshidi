@@ -20,9 +20,9 @@
 
 {% block content %}
     <div class="container">
-        <div class="card" style="margin-top: 10%; direction: rtl">
-            <div class="container-fliud">
-                <form method="post" id="email" class="login">
+        <div class="card" style=" ">
+            <div class="container-fliud ">
+                <form method="post" id="email" class="login" style="direction: rtl">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <button type="submit">ورود</button>
@@ -32,7 +32,7 @@
                         <a href="{% url 'signup' %}" type="submit">ثبت نام</a>
                         <br>
                         <span>رمز عبور خود را فراموش کرده اید؟</span>
-                        <a href="{% url 'password_reset' %}" type="submit"> تغییر رمز عبور</a>
+                        <a href="{% url 'reset_password' %}" type="submit"> تغییر رمز عبور</a>
 
                     </div>
                 </form>
